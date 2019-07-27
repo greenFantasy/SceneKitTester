@@ -12,7 +12,6 @@ import SceneKit
 
 class GameViewController: UIViewController {
     
-    
     private var counter = 0
     private var ship:SCNNode?
     private var scene:SCNScene = SCNScene(named: "art.scnassets/ship.scn")!
