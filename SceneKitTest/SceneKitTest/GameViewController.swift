@@ -108,11 +108,19 @@ class GameViewController: UIViewController {
         return node
     }
     
+    func addCarToScene(_ xPos: Double, _ yPos: Double, _ zPos:Double) -> SCNNode {
+        let newScene = SCNScene(named: "art.scnassets/Car.scn")
+        let node = newScene!.rootNode.childNode(withName: "Car", recursively: true)!
+        node.position = SCNVector3(xPos, yPos, zPos)
+        scene.rootNode.addChildNode(node)
+        return node
+    }
+    
     func createCar(_ xPos:Double, _ yPos:Double, leftStreet: StreetProtocol) {
         // let number = Int.random(in: -700 ... 300)
         let streetCarArray = leftStreet.getCars()
         let car = Car(x: xPos, y: yPos, street: leftStreet)
-        let node = addBoxToScene()
+        let node = addCarToScene(xPos, yPos, 0)
         car.setNode(node: node)
         carArray.append(car)
         for vehicle in streetCarArray {
