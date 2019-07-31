@@ -32,7 +32,7 @@ class GameViewController: UIViewController {
         scene.rootNode.addChildNode(cameraNode)
 
         // place the camera
-        cameraNode.position = SCNVector3(x: 0, y: -15, z: 30)
+        cameraNode.position = SCNVector3(x: 0, y: 10, z: 10)
 
         //add plane to the scene
         //scene.rootNode.addChildNode(SCNNode(geometry: plane))
@@ -61,7 +61,7 @@ class GameViewController: UIViewController {
         //ship.runAction(SCNAction.repeatForever(SCNAction.rotateBy(x: 0, y: 2, z: 0, duration: 1)))
         ship.runAction(SCNAction.repeatForever(SCNAction.rotateBy(x: 0, y: 0, z: 0, duration: 1)))
 
-        cameraNode.runAction(SCNAction.rotateBy(x: 0.5, y: 0, z: 0, duration: 1))
+        cameraNode.runAction(SCNAction.rotateBy(x: -0.9, y: 0, z: 0, duration: 1))
         // retrieve the SCNView
         let scnView = self.view as! SCNView
         scnView.delegate = self
@@ -111,6 +111,7 @@ class GameViewController: UIViewController {
     func addCarToScene(_ xPos: Double, _ yPos: Double, _ zPos:Double) -> SCNNode {
         let newScene = SCNScene(named: "art.scnassets/Car.scn")
         let node = newScene!.rootNode.childNode(withName: "Car", recursively: true)!
+        node.runAction(SCNAction.scale(by: 0.5, duration: 0))
         node.position = SCNVector3(xPos, yPos, zPos)
         scene.rootNode.addChildNode(node)
         return node
