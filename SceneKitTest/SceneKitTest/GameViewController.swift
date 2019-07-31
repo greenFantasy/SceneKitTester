@@ -14,6 +14,7 @@ class GameViewController: UIViewController {
 
     private var counter = 0
     private var ship:SCNNode?
+    // fix plane to frame size
     private var plane = SCNPlane(width: 100, height: 100)
     private var scene:SCNScene = SCNScene(named: "art.scnassets/ship.scn")!
     private var carArray:[Car] = []
@@ -39,7 +40,7 @@ class GameViewController: UIViewController {
         //add plane to the scene
         let planeNode = SCNNode()
         let material = SCNMaterial()
-        material.diffuse.contents = UIColor.green
+        material.diffuse.contents = UIColor.blue
         material.isDoubleSided = true
         plane.firstMaterial = material
         planeNode.geometry = plane
@@ -80,7 +81,7 @@ class GameViewController: UIViewController {
         scnView.scene = scene
 
         // allows the user to manipulate the camera
-        scnView.allowsCameraControl = true
+        scnView.allowsCameraControl = false
 
         // show statistics such as fps and timing information
         scnView.showsStatistics = true
