@@ -67,13 +67,15 @@ class Car: SKShapeNode {  // Car implements SKShapeNode class
         sceneNode.position = getSCNVector()
     }
     
-//    func rotateNodeLeft(){
-//        shapeNode.run(SKAction.rotate(byAngle: .pi/2, duration: 0.4))
-//    }
-//
-//    func rotateNodeRight(){
-//        shapeNode.run(SKAction.rotate(byAngle: -.pi/2, duration: 0.4))
-//    }
+    func rotateNodeLeft(){
+        sceneNode.runAction(SCNAction.rotateBy(x: 0, y: -.pi/2, z: 0, duration: 0.4))
+        //sceneNode.run(SKAction.rotate(byAngle: .pi/2, duration: 0.4))
+    }
+
+    func rotateNodeRight(){
+        sceneNode.runAction(SCNAction.rotateBy(x: 0, y: .pi/2, z: 0, duration: 0.4))
+        //sceneNode.run(SKAction.rotate(byAngle: -.pi/2, duration: 0.4))
+    }
     
     func setNode(node: SCNNode) {
         sceneNode = node
@@ -95,7 +97,7 @@ class Car: SKShapeNode {  // Car implements SKShapeNode class
         } else {
             let number = Int.random(in: 0 ... 30)
             if (number == 10) {
-                //rotateNodeLeft()
+                rotateNodeLeft()
             }
         }
         updateShapeNodePos()
@@ -228,7 +230,7 @@ class Car: SKShapeNode {  // Car implements SKShapeNode class
             }
             currentStreet.addCar(car: self)
             fixPosOnStreet()
-            //rotateNodeRight()
+            rotateNodeRight()
             completedTurnsArray[intersectionArray.count - 1] = true
         }
     }
@@ -355,7 +357,7 @@ class Car: SKShapeNode {  // Car implements SKShapeNode class
         }
         currentStreet.addCar(car: self)
         fixPosOnStreet()
-        //rotateNodeLeft()
+        rotateNodeLeft()
         completedTurnsArray[intersectionArray.count - 1] = true
     }
     
