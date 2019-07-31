@@ -57,13 +57,13 @@ class Car: SKShapeNode {  // Car implements SKShapeNode class
     
     func initialRotate() {
         switch currentStreet.getDirection() {
-            case 1:
-                rotateNodeRight(duration: 0.0)
             case 0:
                 rotateNodeRight(duration: 0.0)
+            case 1:
                 rotateNodeRight(duration: 0.0)
                 rotateNodeRight(duration: 0.0)
-            case 2:
+                rotateNodeRight(duration: 0.0)
+            case 3:
                 rotateNodeRight(duration: 0.0)
                 rotateNodeRight(duration: 0.0)
             default:
@@ -80,15 +80,15 @@ class Car: SKShapeNode {  // Car implements SKShapeNode class
     }
     
     func rotateNodeLeft(){
-        sceneNode.runAction(SCNAction.rotateBy(x: 0, y: -.pi/2, z: 0, duration: 0.4))
+        sceneNode.runAction(SCNAction.rotateBy(x: 0, y: 0, z: .pi/2, duration: 0.4))
     }
 
     func rotateNodeRight(){
-        sceneNode.runAction(SCNAction.rotateBy(x: 0, y: .pi/2, z: 0, duration: 0.4))
+        sceneNode.runAction(SCNAction.rotateBy(x: 0, y: 0, z: -.pi/2, duration: 0.4))
     }
     
     func rotateNodeRight(duration: Double) {
-        sceneNode.runAction(SCNAction.rotateBy(x: 0, y: .pi/2, z: 0, duration: 0.0))
+        sceneNode.runAction(SCNAction.rotateBy(x: 0, y: 0, z: -.pi/2, duration: 0.0))
     }
     
     func setNode(node: SCNNode) {

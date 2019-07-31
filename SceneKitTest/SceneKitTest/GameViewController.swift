@@ -30,9 +30,10 @@ class GameViewController: UIViewController {
         let cameraNode = SCNNode()
         cameraNode.camera = SCNCamera()
         scene.rootNode.addChildNode(cameraNode)
-
+        
         // place the camera
-        cameraNode.position = SCNVector3(x: 0, y: 10, z: 10)
+        cameraNode.position = SCNVector3(x: 0, y: -8.5, z: 15)
+        cameraNode.runAction(SCNAction.rotateBy(x: 0.5, y: 0, z: 0, duration: 0))
 
         //add plane to the scene
         //scene.rootNode.addChildNode(SCNNode(geometry: plane))
@@ -42,7 +43,7 @@ class GameViewController: UIViewController {
         let lightNode = SCNNode()
         lightNode.light = SCNLight()
         lightNode.light!.type = .omni
-        lightNode.position = SCNVector3(x: 0, y: 300, z: 20)
+        lightNode.position = SCNVector3(x: 0, y: 0, z: 20)
         scene.rootNode.addChildNode(lightNode)
 
         // create and add an ambient light to the scene
@@ -57,8 +58,6 @@ class GameViewController: UIViewController {
         self.ship = ship
 
         // animate the 3d object
-
-        cameraNode.runAction(SCNAction.rotateBy(x: -0.9, y: 0, z: 0, duration: 1))
         //ship.runAction(SCNAction.repeatForever(SCNAction.rotateBy(x: 0, y: 2, z: 0, duration: 1)))
         ship.runAction(SCNAction.repeatForever(SCNAction.rotateBy(x: 0, y: 0, z: 0, duration: 1)))
         // run the update function repeatedly
@@ -113,6 +112,7 @@ class GameViewController: UIViewController {
     func addCarToScene(_ xPos: Double, _ yPos: Double, _ zPos:Double) -> SCNNode {
         let newScene = SCNScene(named: "art.scnassets/Car.scn")
         let node = newScene!.rootNode.childNode(withName: "Car", recursively: true)!
+        node.runAction(SCNAction.rotateBy(x: .pi/2, y: 0, z: 0, duration: 0))
         node.runAction(SCNAction.scale(by: 0.5, duration: 0))
         node.position = SCNVector3(xPos, yPos, zPos)
         scene.rootNode.addChildNode(node)
