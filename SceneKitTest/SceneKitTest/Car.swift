@@ -39,11 +39,9 @@ class Car: SKShapeNode {  // Car implements SKShapeNode class
         yPos = 0
         zPos = z
         currentStreet = street
-        
         closestCar = nil
         previousStreet = currentStreet
         super.init()
-        
         currentStreet.addCar(car: self)
         fixPosOnStreet()
         updateShapeNodePos()
@@ -59,6 +57,22 @@ class Car: SKShapeNode {  // Car implements SKShapeNode class
         }
     }
     
+    func initialRotate() {
+        switch currentStreet.getDirection() {
+            case 1:
+                rotateNodeRight(duration: 0.0)
+            case 0:
+                rotateNodeRight(duration: 0.0)
+                rotateNodeRight(duration: 0.0)
+                rotateNodeRight(duration: 0.0)
+            case 2:
+                rotateNodeRight(duration: 0.0)
+                rotateNodeRight(duration: 0.0)
+            default:
+                var _ = 0
+        }
+    }
+    
     required init?(coder aDecoder: NSCoder) {  // Required for SKShapeNode implementation
         fatalError("init(coder:) has not been implemented")
     }
@@ -69,16 +83,19 @@ class Car: SKShapeNode {  // Car implements SKShapeNode class
     
     func rotateNodeLeft(){
         sceneNode.runAction(SCNAction.rotateBy(x: 0, y: -.pi/2, z: 0, duration: 0.4))
-        //sceneNode.run(SKAction.rotate(byAngle: .pi/2, duration: 0.4))
     }
 
     func rotateNodeRight(){
         sceneNode.runAction(SCNAction.rotateBy(x: 0, y: .pi/2, z: 0, duration: 0.4))
-        //sceneNode.run(SKAction.rotate(byAngle: -.pi/2, duration: 0.4))
+    }
+    
+    func rotateNodeRight(duration: Double) {
+        sceneNode.runAction(SCNAction.rotateBy(x: 0, y: .pi/2, z: 0, duration: 0.1))
     }
     
     func setNode(node: SCNNode) {
         sceneNode = node
+        initialRotate()
     }
     
     func move(xVel:Double, zVel:Double) {
