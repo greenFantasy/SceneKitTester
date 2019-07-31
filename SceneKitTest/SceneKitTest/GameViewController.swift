@@ -32,7 +32,7 @@ class GameViewController: UIViewController {
         scene.rootNode.addChildNode(cameraNode)
         
         // place the camera
-        cameraNode.position = SCNVector3(x: 0, y: 0, z: 30)
+        cameraNode.position = SCNVector3(x: 0, y: -15, z: 30)
         
         //add plane to the scene
         //scene.rootNode.addChildNode(SCNNode(geometry: plane))
@@ -61,7 +61,7 @@ class GameViewController: UIViewController {
         ship.runAction(SCNAction.repeatForever(SCNAction.rotateBy(x: 0, y: 0, z: 0, duration: 1)))
         // run the update function repeatedly
         
-        
+        cameraNode.runAction(SCNAction.rotateBy(x: 0.5, y: 0, z: 0, duration: 1))
         // retrieve the SCNView
         let scnView = self.view as! SCNView
         scnView.delegate = self
