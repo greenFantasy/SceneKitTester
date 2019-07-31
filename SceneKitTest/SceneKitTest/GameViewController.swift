@@ -14,6 +14,7 @@ class GameViewController: UIViewController {
 
     private var counter = 0
     private var ship:SCNNode?
+    private var plane = SCNPlane(width: 100, height: 100)
     private var scene:SCNScene = SCNScene(named: "art.scnassets/ship.scn")!
     private var carArray:[Car] = []
     private var twoWayHorizontalArray:[TwoWayHorizontal] = []
@@ -35,6 +36,14 @@ class GameViewController: UIViewController {
         cameraNode.position = SCNVector3(x: 0, y: 10, z: 10)
 
         //add plane to the scene
+        let planeNode = SCNNode()
+        let material = SCNMaterial()
+        material.diffuse.contents = UIColor.green
+        material.isDoubleSided = true
+        plane.firstMaterial = material
+        planeNode.geometry = plane
+        planeNode.position = SCNVector3(0, 0, -10)
+        scene.rootNode.addChildNode(planeNode)
         //scene.rootNode.addChildNode(SCNNode(geometry: plane))
 
 
