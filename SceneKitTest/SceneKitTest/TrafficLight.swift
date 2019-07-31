@@ -24,10 +24,10 @@ class TrafficLight {
     private var timer:Timer?  // Creates optional of type Timer
     private var timeLeft = 3  // Variable used in timer for setting amount of time left
     
-    init (x:Double, y:Double, location: StreetProtocol) {
+    init (x:Double, z:Double, location: StreetProtocol) {
         xPos = x
-        yPos = y
-        zPos = -2
+        yPos = -2
+        zPos = z
         street = location
         street.addLight(trafficLight: self)
         updateShapeNode()
@@ -39,10 +39,6 @@ class TrafficLight {
     
     func getXPos() -> Double {
         return xPos
-    }
-    
-    func getYPos() -> Double {
-        return yPos
     }
     
     func getZPos() -> Double {

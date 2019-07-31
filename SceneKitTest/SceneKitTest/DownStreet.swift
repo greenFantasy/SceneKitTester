@@ -38,7 +38,7 @@ class DownStreet:StreetProtocol {
         var added = false
         if (lightArray.count > 0) {
             for i in 0...lightArray.count-1 {
-                if (!added && trafficLight.getYPos() > lightArray[i].getYPos()) {
+                if (!added && trafficLight.getZPos() > lightArray[i].getZPos()) {
                     lightArray.insert(trafficLight,at:i)
                     added = true
                 }
@@ -53,7 +53,7 @@ class DownStreet:StreetProtocol {
     
     func lightFinder(car: Car) -> TrafficLight? {
         for trafficLight in lightArray {
-            if (car.getYPos() > Double(trafficLight.getYPos())) {
+            if (car.getZPos() > Double(trafficLight.getZPos())) {
                 return trafficLight
             }
         }
@@ -84,13 +84,13 @@ class DownStreet:StreetProtocol {
     }
     
     func findClosestCar(car:Car) { // when direction == 2
-        let y = car.getYPos()
+        let z = car.getZPos()
         var closest:Car? = nil
         let streetCarArray = car.getStreet().getCars()
         for vehicle in streetCarArray {
-            if (vehicle.getYPos() < y) {
+            if (vehicle.getZPos() < z) {
                 if let unwrapped = closest {
-                    if (vehicle.getYPos() > unwrapped.getYPos()) {
+                    if (vehicle.getZPos() > unwrapped.getZPos()) {
                         closest = vehicle
                         car.setClosestCar(car: closest!)
                     }
@@ -114,9 +114,9 @@ class DownStreet:StreetProtocol {
             upper = startingPos
         }
         for vehicle in carArray {
-            if (lower < vehicle.getYPos() && upper > vehicle.getYPos() && vehicle.getLastTurn() != 2) {
+            if (lower < vehicle.getZPos() && upper > vehicle.getZPos() && vehicle.getLastTurn() != 2) {
                 if let car = closeCar {
-                    if vehicle.getYPos() < car.getYPos() {
+                    if vehicle.getZPos() < car.getZPos() {
                         closeCar = vehicle
                     }
                 } else {
