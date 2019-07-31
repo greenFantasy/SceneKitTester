@@ -58,10 +58,12 @@ class GameViewController: UIViewController {
 
         // animate the 3d object
 
+        cameraNode.runAction(SCNAction.rotateBy(x: -0.9, y: 0, z: 0, duration: 1))
         //ship.runAction(SCNAction.repeatForever(SCNAction.rotateBy(x: 0, y: 2, z: 0, duration: 1)))
         ship.runAction(SCNAction.repeatForever(SCNAction.rotateBy(x: 0, y: 0, z: 0, duration: 1)))
-
-        cameraNode.runAction(SCNAction.rotateBy(x: -0.9, y: 0, z: 0, duration: 1))
+        // run the update function repeatedly
+        
+        
         // retrieve the SCNView
         let scnView = self.view as! SCNView
         scnView.delegate = self
@@ -117,11 +119,12 @@ class GameViewController: UIViewController {
         return node
     }
 
-    func createCar(_ xPos:Double, _ zPos:Double, leftStreet: StreetProtocol) {
+    
+    func createCar(_ xPos:Double, _ yPos:Double, leftStreet: StreetProtocol) {
         // let number = Int.random(in: -700 ... 300)
         let streetCarArray = leftStreet.getCars()
-        let car = Car(x: xPos, z: zPos, street: leftStreet)
-        let node = addCarToScene(xPos, 0, zPos)
+        let car = Car(x: xPos, y: yPos, street: leftStreet)
+        let node = addCarToScene(xPos, yPos, 0)
         car.setNode(node: node)
         carArray.append(car)
         for vehicle in streetCarArray {
@@ -165,7 +168,7 @@ class GameViewController: UIViewController {
 
     func createLight(trafficLight: TrafficLight) {
         let light = trafficLight
-        let node = addBoxToScene(light.getXPos(),-1.0,light.getZPos())
+        let node = addBoxToScene(light.getXPos(),light.getYPos(),light.getZPos())
         light.setNode(node: node)
         lightArray.append(light)
         light.getNode().name = String(lightArray.count - 1)
@@ -236,8 +239,8 @@ class GameViewController: UIViewController {
             return 1000000
         }
     }
-
-    func calcZDistance(car1: Car?, car2: Car?) -> Double {
+    
+    func calcYDistance(car1: Car?, car2: Car?) -> Double {
         //        let boundingBox1 = car1.getNode().path!.boundingBox
         //        let vehicleWidth1 = boundingBox1.size.width/2
         //        let boundingBox2 = car2.getNode().path!.boundingBox
@@ -245,7 +248,7 @@ class GameViewController: UIViewController {
         //        return car1.getXPos() - car2.getXPos() - Int(vehicleWidth1) - Int(vehicleWidth2)
         if let vehicle1 = car1 {
             if let vehicle2 = car2 {
-                return absoluteValue(vehicle1.getZPos(),vehicle2.getZPos())
+                return absoluteValue(vehicle1.getYPos(),vehicle2.getYPos())
             } else {
                 return 1000000
             }
@@ -285,9 +288,8 @@ class GameViewController: UIViewController {
 
     func moveCarForward(vehicle: Car) {
         let vec = vehicle.directionToVector()
-
-        vehicle.move(xVel: Double(vec[0]) * vehicle.getTopSpeed() * speedModifier(distance: absoluteValue(calcXDistance(car1: vehicle, car2: vehicle.getClosestCar()))), zVel: Double(vec[1]) * vehicle.getTopSpeed() * speedModifier(distance: absoluteValue(calcZDistance(car1: vehicle, car2: vehicle.getClosestCar()))))
-
+        
+        vehicle.move(xVel: Double(vec[0]) * vehicle.getTopSpeed() * speedModifier(distance: absoluteValue(calcXDistance(car1: vehicle, car2: vehicle.getClosestCar()))), yVel: Double(vec[1]) * vehicle.getTopSpeed() * speedModifier(distance: absoluteValue(calcYDistance(car1: vehicle, car2: vehicle.getClosestCar()))))
     }
 
     func move() {
@@ -327,11 +329,11 @@ class GameViewController: UIViewController {
         if vehicle.getDirection() == 0 {
             return vehicle.getXPos() > light.getXPos() + width && vehicle.getXPos() < light.getXPos() + width + 0.5
         } else if vehicle.getDirection() == 2 {
-            return vehicle.getZPos() > light.getZPos() + height && vehicle.getZPos() < light.getZPos() + height + 0.5
+            return vehicle.getYPos() > light.getYPos() + height && vehicle.getYPos() < light.getYPos() + height + 0.5
         } else if vehicle.getDirection() == 1 {
             return vehicle.getXPos() < light.getXPos() - width && vehicle.getXPos() > light.getXPos() - width - 0.5
         } else {
-            return vehicle.getZPos() < light.getZPos() - height && vehicle.getZPos() > light.getZPos() - height - 0.5
+            return vehicle.getYPos() < light.getYPos() - height && vehicle.getYPos() > light.getYPos() - height - 0.5
         }
     }
 

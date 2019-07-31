@@ -18,7 +18,7 @@ class Intersection {
     // turning while watching cars on other streets has not been implemented, so cars on different streets are completely unaware of each other
     
     private var xCenter:Double
-    private var zCenter:Double
+    private var yCenter:Double
     private var horizontalTwoWay:TwoWayHorizontal
     private var verticalTwoWay:TwoWayVertical
     private var width = 1.0
@@ -33,13 +33,13 @@ class Intersection {
     
     init (horizontal: TwoWayHorizontal, vertical: TwoWayVertical) {
         xCenter = vertical.getMidline()
-        zCenter = horizontal.getMidline()
+        yCenter = horizontal.getMidline()
         horizontalTwoWay = horizontal
         verticalTwoWay = vertical
-        lightLeft = TrafficLight(x: xCenter - width/2 - lightDistance, z: zCenter + height/2 + lightDistance, location:  horizontalTwoWay.getLeftStreet())
-        lightDown = TrafficLight(x: xCenter - width/2 - lightDistance, z: zCenter - height/2 - lightDistance, location: verticalTwoWay.getDownStreet())
-        lightRight = TrafficLight(x: xCenter + width/2 + lightDistance, z: zCenter - height/2 - lightDistance, location: horizontalTwoWay.getRightStreet())
-        lightUp = TrafficLight(x: xCenter + width/2 + lightDistance, z: zCenter + height/2 + lightDistance, location: verticalTwoWay.getUpStreet())
+        lightLeft = TrafficLight(x: xCenter - width/2 - lightDistance, y: yCenter + height/2 + lightDistance, location:  horizontalTwoWay.getLeftStreet())
+        lightDown = TrafficLight(x: xCenter - width/2 - lightDistance, y: yCenter - height/2 - lightDistance, location: verticalTwoWay.getDownStreet())
+        lightRight = TrafficLight(x: xCenter + width/2 + lightDistance, y: yCenter - height/2 - lightDistance, location: horizontalTwoWay.getRightStreet())
+        lightUp = TrafficLight(x: xCenter + width/2 + lightDistance, y: yCenter + height/2 + lightDistance, location: verticalTwoWay.getUpStreet())
         allFourLights.append(lightLeft)
         allFourLights.append(lightRight)
         allFourLights.append(lightDown)
@@ -71,7 +71,7 @@ class Intersection {
     }
     
     func getPosition() -> [Double] {
-        return [xCenter, zCenter]
+        return [xCenter, yCenter]
     }
     
     func isCarAtIntersection(_ car: Car) -> Bool {
@@ -93,11 +93,11 @@ class Intersection {
             }
         case 2:
             if car.getStreet() as! DownStreet === verticalTwoWay.getDownStreet() {
-                return (car.getZPos() - zCenter < turningMargin && car.getZPos() - zCenter > -turningMargin)
+                return (car.getYPos() - yCenter < turningMargin && car.getYPos() - yCenter > -turningMargin)
             }
         case 3:
             if car.getStreet() as! UpStreet === verticalTwoWay.getUpStreet() {
-                return (car.getZPos() - zCenter < turningMargin && car.getZPos() - zCenter > -turningMargin)
+                return (car.getYPos() - yCenter < turningMargin && car.getYPos() - yCenter > -turningMargin)
             }
         default:
             return false // does nothing on purpose
@@ -121,8 +121,8 @@ class Intersection {
         return [xCenter - width - extra, xCenter + width + extra]
     }
     
-    func getZFrame() -> [Double] {
-        return [zCenter - height - extra, zCenter + height + extra]
+    func getYFrame() -> [Double] {
+        return [yCenter - height - extra, yCenter + height + extra]
     }
     
 }

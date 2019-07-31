@@ -19,7 +19,6 @@ class Car: SKShapeNode {  // Car implements SKShapeNode class
     private let topSpeed:Double = 0.2
     private var xPos:Double
     private var yPos:Double
-    private var zPos:Double
     private var previousStreet:StreetProtocol
     private var currentStreet:StreetProtocol
     private var closestCar: Car?
@@ -31,13 +30,12 @@ class Car: SKShapeNode {  // Car implements SKShapeNode class
     
     //private let finalDestination
     
-    init (x: Double, z: Double, street: StreetProtocol) {
+    init (x: Double, y: Double, street: StreetProtocol) {
         sceneNode = SCNNode(geometry: geometry)
 //        geometry.firstMaterial?.diffuse.contents = UIColor.green
-        sceneNode.position = SCNVector3(x, 0, z)
+        sceneNode.position = SCNVector3(x, y, 0)
         xPos = x
-        yPos = 0
-        zPos = z
+        yPos = y
         currentStreet = street
         closestCar = nil
         previousStreet = currentStreet
@@ -50,7 +48,7 @@ class Car: SKShapeNode {  // Car implements SKShapeNode class
     
     func fixPosOnStreet() {
         if (currentStreet.getDirection() <= 1) {
-            zPos = Double(currentStreet.getPosition())
+            yPos = Double(currentStreet.getPosition())
         } else {
             xPos = Double(currentStreet.getPosition())
             print(xPos)
@@ -98,7 +96,7 @@ class Car: SKShapeNode {  // Car implements SKShapeNode class
         initialRotate()
     }
     
-    func move(xVel:Double, zVel:Double) {
+    func move(xVel:Double, yVel:Double) {
         if let intersection = currentIntersection {
             if !(currentStreet.getDirection() == previousStreet.getDirection()) {
                 if !isAtIntersection2(intersection: intersection) {
@@ -111,7 +109,7 @@ class Car: SKShapeNode {  // Car implements SKShapeNode class
         
         if (!intersected) {
             xPos += xVel
-            zPos += zVel
+            yPos += yVel
         } else {
             let number = Int.random(in: 0 ... 30)
             if (number == 10) {
@@ -137,9 +135,9 @@ class Car: SKShapeNode {  // Car implements SKShapeNode class
         closestCar = nil
     }
     
-    func setPos(newX: Double, newZ: Double) {
+    func setPos(newX: Double, newY: Double) {
         xPos = newX
-        zPos = newZ
+        yPos = newY
         updateShapeNodePos()
     }
     
@@ -147,7 +145,7 @@ class Car: SKShapeNode {  // Car implements SKShapeNode class
         if (getDirection() == 0 || getDirection() == 1) {
             return getXPos()
         } else {
-            return getZPos()
+            return getYPos()
         }
     }
     
@@ -164,16 +162,16 @@ class Car: SKShapeNode {  // Car implements SKShapeNode class
         return xPos
     }
     
-    func getZPos() -> Double {
-        return zPos
+    func getYPos() -> Double {
+        return yPos
     }
     
     func getSCNVector() -> SCNVector3 {
-        return SCNVector3(xPos, yPos, zPos)
+        return SCNVector3(xPos, yPos, 0)
     }
     
     func getPositionArray() -> [Double] {
-        return [xPos,yPos,zPos]
+        return [xPos,yPos]
     }
     
     func getStreet() -> StreetProtocol {
@@ -381,7 +379,7 @@ class Car: SKShapeNode {  // Car implements SKShapeNode class
     
     func isAtIntersection2(intersection: Intersection) -> Bool {
         if (Double(intersection.getXFrame()[0]) < getXPos() && getXPos() < Double(intersection.getXFrame()[1])) {
-            if (Double(intersection.getZFrame()[0]) < getZPos() && getZPos() < Double(intersection.getZFrame()[1])) {
+            if (Double(intersection.getYFrame()[0]) < getYPos() && getYPos() < Double(intersection.getYFrame()[1])) {
                 return true
             }
         }
