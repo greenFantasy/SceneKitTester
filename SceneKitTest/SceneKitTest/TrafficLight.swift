@@ -27,7 +27,7 @@ class TrafficLight {
     init (x:Double, y:Double, location: StreetProtocol) {
         xPos = x
         yPos = y
-        zPos = -2
+        zPos = 0
         street = location
         street.addLight(trafficLight: self)
         updateShapeNode()

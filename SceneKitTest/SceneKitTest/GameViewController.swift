@@ -46,9 +46,8 @@ class GameViewController: UIViewController {
         planeNode.geometry = plane
         planeNode.position = SCNVector3(0, 0, -10)
         scene.rootNode.addChildNode(planeNode)
-        //scene.rootNode.addChildNode(SCNNode(geometry: plane))
-
-
+        
+        
         // create and add a light to the scene
         let lightNode = SCNNode()
         lightNode.light = SCNLight()
@@ -81,7 +80,7 @@ class GameViewController: UIViewController {
         scnView.scene = scene
 
         // allows the user to manipulate the camera
-        scnView.allowsCameraControl = false
+        scnView.allowsCameraControl = true
 
         // show statistics such as fps and timing information
         scnView.showsStatistics = true
@@ -169,11 +168,24 @@ class GameViewController: UIViewController {
             for verticalTwoWay in twoWayVerticalArray {
                 let intersection = Intersection(horizontal: horizontalTwoWay, vertical: verticalTwoWay)
                 intersectionArray.append(intersection)
+                addImageOfIntersection(coordinates: intersection.getPosition())
                 for trafficLight in intersection.getAllLights() {
                     createLight(trafficLight: trafficLight)
                 }
             }
         }
+    }
+    
+    func addImageOfIntersection(coordinates: [Double]) {
+        let streetPlane = SCNPlane(width: 10, height: 10)
+        let planeNode = SCNNode()
+        let material = SCNMaterial()
+        material.diffuse.contents = UIImage(named: "street")
+        material.isDoubleSided = true
+        streetPlane.firstMaterial = material
+        planeNode.geometry = streetPlane
+        planeNode.position = SCNVector3(coordinates[0], coordinates[1], 0)
+        scene.rootNode.addChildNode(planeNode)
     }
 
     func createLight(trafficLight: TrafficLight) {
