@@ -41,11 +41,11 @@ class GameViewController: UIViewController {
         let planeNode = SCNNode()
         let material = SCNMaterial()
         // 126, 173, 76
-        material.diffuse.contents = UIColor(red: 133.0/255.0, green: 174.0/255.0, blue: 70.0/255.0, alpha: 1)
+        material.diffuse.contents = UIImage(named: "grass")
         material.isDoubleSided = true
         plane.firstMaterial = material
         planeNode.geometry = plane
-        planeNode.position = SCNVector3(0, 0, -10)
+        planeNode.position = SCNVector3(0, 0, -0.1)
         scene.rootNode.addChildNode(planeNode)
         
         
@@ -170,6 +170,7 @@ class GameViewController: UIViewController {
                 let intersection = Intersection(horizontal: horizontalTwoWay, vertical: verticalTwoWay)
                 intersectionArray.append(intersection)
                 addImageOfIntersection(coordinates: intersection.getPosition())
+                addStreetLeft(coordinates: intersection.getPosition())
                 for trafficLight in intersection.getAllLights() {
                     createLight(trafficLight: trafficLight)
                 }
@@ -177,11 +178,23 @@ class GameViewController: UIViewController {
         }
     }
     
+    func addStreetLeft(coordinates: [Double]) {
+        let streetPlane = SCNPlane(width: 0.739, height: 10)
+        let planeNode = SCNNode()
+        let material = SCNMaterial()
+        material.diffuse.contents = UIImage(named: "street")
+        material.isDoubleSided = true
+        streetPlane.firstMaterial = material
+        planeNode.geometry = streetPlane
+        planeNode.position = SCNVector3(coordinates[0] - 5 - (0.739/2), coordinates[1], 0)
+        scene.rootNode.addChildNode(planeNode)
+    }
+    
     func addImageOfIntersection(coordinates: [Double]) {
         let streetPlane = SCNPlane(width: 10, height: 10)
         let planeNode = SCNNode()
         let material = SCNMaterial()
-        material.diffuse.contents = UIImage(named: "street")
+        material.diffuse.contents = UIImage(named: "intersection")
         material.isDoubleSided = true
         streetPlane.firstMaterial = material
         planeNode.geometry = streetPlane
