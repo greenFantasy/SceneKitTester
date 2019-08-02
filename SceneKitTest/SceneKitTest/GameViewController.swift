@@ -164,21 +164,17 @@ class GameViewController: UIViewController {
     
     func createCar(_ xPos:Double, _ yPos:Double, leftStreet: StreetProtocol) {
         // let number = Int.random(in: -700 ... 300)
-        let streetCarArray = leftStreet.getCars()
-        let car = Car(x: xPos, y: yPos, street: leftStreet)
-        let node = addCarToScene(xPos, yPos, 0)
-        car.setNode(node: node)
-        carArray.append(car)
-        for vehicle in streetCarArray {
-            if let car2 = car.getClosestCar() {
-                if (leftStreet.getDirection() == 0 && car2.getXPos() < vehicle.getXPos() && car.getXPos() > vehicle.getXPos()) {
-                    vehicle.setClosestCar(car: vehicle)
-                }
-                if (leftStreet.getDirection() == 1 && car2.getXPos() > vehicle.getXPos() && car.getXPos() < vehicle.getXPos()) {
-
-                    vehicle.setClosestCar(car: vehicle)
-                }
+        var create = true
+        for vehicle in carArray {
+            if (absoluteValue(xPos, vehicle.getXPos()) < 2 && absoluteValue(yPos, vehicle.getYPos()) < 2) {
+                create = false
             }
+        }
+        if create {
+            let car = Car(x: xPos, y: yPos, street: leftStreet)
+            let node = addCarToScene(xPos, yPos, 0)
+            car.setNode(node: node)
+            carArray.append(car)
         }
     }
 
@@ -329,8 +325,8 @@ class GameViewController: UIViewController {
     }
 
     func speedModifier(distance:Double) -> Double {
-        let minDistance = 2.5
-        let highSpeedDistance = 4.5
+        let minDistance = 3.0
+        let highSpeedDistance = 6.0
         if distance <= minDistance {
             return 0
         } else if (distance <= highSpeedDistance) {
@@ -380,18 +376,22 @@ class GameViewController: UIViewController {
                 print("y: " + String(vehicle.getYPos()))
                 if (vehicle.getDirection() == 0 && vehicle.getXPos() < 0) {
                     createCar(30, vehicle.getYPos(), leftStreet: vehicle.getStreet())
+                    createCar(40, vehicle.getYPos(), leftStreet: vehicle.getStreet())
                     elementsToRemove.append(i)
                     removeCar(vehicle)
                 } else if (vehicle.getDirection() == 1 && vehicle.getXPos() > 0) {
                     createCar(-30, vehicle.getYPos(), leftStreet: vehicle.getStreet())
+                    createCar(-40, vehicle.getYPos(), leftStreet: vehicle.getStreet())
                     elementsToRemove.append(i)
                     removeCar(vehicle)
                 } else if (vehicle.getDirection() == 2 && vehicle.getYPos() < 0) {
                     createCar(vehicle.getXPos(), 20, leftStreet: vehicle.getStreet())
+                    createCar(vehicle.getXPos(), 30, leftStreet: vehicle.getStreet())
                     elementsToRemove.append(i)
                     removeCar(vehicle)
                 } else if (vehicle.getDirection() == 3 && vehicle.getYPos() > 0) {
                     createCar(vehicle.getXPos(), -20, leftStreet: vehicle.getStreet())
+                    createCar(vehicle.getXPos(), -30, leftStreet: vehicle.getStreet())
                     elementsToRemove.append(i)
                     removeCar(vehicle)
                 }
