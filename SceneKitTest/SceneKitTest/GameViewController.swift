@@ -34,13 +34,14 @@ class GameViewController: UIViewController {
         scene.rootNode.addChildNode(cameraNode)
         
         // place the camera
-        cameraNode.position = SCNVector3(x: 0, y: -8.5, z: 15)
+        cameraNode.position = SCNVector3(x: 0, y: -10.5, z: 15)
         cameraNode.runAction(SCNAction.rotateBy(x: 0.5, y: 0, z: 0, duration: 0))
 
         //add plane to the scene
         let planeNode = SCNNode()
         let material = SCNMaterial()
-        material.diffuse.contents = UIColor.blue
+        // 126, 173, 76
+        material.diffuse.contents = UIColor(red: 133.0/255.0, green: 174.0/255.0, blue: 70.0/255.0, alpha: 1)
         material.isDoubleSided = true
         plane.firstMaterial = material
         planeNode.geometry = plane
@@ -346,8 +347,8 @@ class GameViewController: UIViewController {
     }
 
     func isVehicleCloseToLight(vehicle: Car, light: TrafficLight) -> Bool {
-        let width = light.getIntersection().getWidth() + 2 * light.getRadius()
-        let height = light.getIntersection().getHeight() + 2 * light.getRadius()
+        let width = light.getIntersection().getWidth() + 4.5 * light.getRadius()
+        let height = light.getIntersection().getHeight() + 4.5 * light.getRadius()
         if vehicle.getDirection() == 0 {
             return vehicle.getXPos() > light.getXPos() + width && vehicle.getXPos() < light.getXPos() + width + 0.5
         } else if vehicle.getDirection() == 2 {
