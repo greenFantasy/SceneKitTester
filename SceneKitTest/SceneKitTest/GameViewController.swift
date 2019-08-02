@@ -101,6 +101,8 @@ class GameViewController: UIViewController {
         createCar(0, 20, leftStreet: v1.getDownStreet())
         createCar(-20, 0, leftStreet: h1.getRightStreet())
         createCar(0, -15, leftStreet: v2.getUpStreet())
+        addStreetHorizontal()
+        addStreetVertical()
         intersectionCreator()
         
 //        addLineToScene(-22, 0, 1, height: 15)
@@ -196,14 +198,6 @@ class GameViewController: UIViewController {
         for horizontalTwoWay in twoWayHorizontalArray {
             for verticalTwoWay in twoWayVerticalArray {
                 let intersection = Intersection(horizontal: horizontalTwoWay, vertical: verticalTwoWay)
-                addStreetHorizontal(coordinates: intersection.getPosition())
-                addStreetVertical(coordinates: intersection.getPosition())
-            }
-        }
-        
-        for horizontalTwoWay in twoWayHorizontalArray {
-            for verticalTwoWay in twoWayVerticalArray {
-                let intersection = Intersection(horizontal: horizontalTwoWay, vertical: verticalTwoWay)
                 intersectionArray.append(intersection)
                 addImageOfIntersection(coordinates: intersection.getPosition())
                 for trafficLight in intersection.getAllLights() {
@@ -213,35 +207,39 @@ class GameViewController: UIViewController {
         }
     }
     
-    func addStreetHorizontal(coordinates: [Double]) {
-        var offset = 0.0
-        for _ in 0...100 {
-            let streetPlane = SCNPlane(width: 0.739, height: 4.027)
-            let planeNode = SCNNode()
-            let material = SCNMaterial()
-            material.diffuse.contents = UIImage(named: "streetHorizontal")
-            material.isDoubleSided = true
-            streetPlane.firstMaterial = material
-            planeNode.geometry = streetPlane
-            planeNode.position = SCNVector3(30 - offset, coordinates[1] + 0.025, 0)
-            scene.rootNode.addChildNode(planeNode)
-            offset += 0.739
+    func addStreetHorizontal() {
+        for horizontalTwoWay in twoWayHorizontalArray {
+            var offset = 0.0
+            for _ in 0...100 {
+                let streetPlane = SCNPlane(width: 0.739, height: 4.027)
+                let planeNode = SCNNode()
+                let material = SCNMaterial()
+                material.diffuse.contents = UIImage(named: "streetHorizontal")
+                material.isDoubleSided = true
+                streetPlane.firstMaterial = material
+                planeNode.geometry = streetPlane
+                planeNode.position = SCNVector3(30 - offset, horizontalTwoWay.getMidline() + 0.025, 0)
+                scene.rootNode.addChildNode(planeNode)
+                offset += 0.739
+            }
         }
     }
     
-    func addStreetVertical(coordinates: [Double]) {
-        var offset = 0.0
-        for _ in 0...50 {
-            let streetPlane = SCNPlane(width: 4.027, height: 0.739)
-            let planeNode = SCNNode()
-            let material = SCNMaterial()
-            material.diffuse.contents = UIImage(named: "streetVertical")
-            material.isDoubleSided = true
-            streetPlane.firstMaterial = material
-            planeNode.geometry = streetPlane
-            planeNode.position = SCNVector3(coordinates[0] - 0.025, 15 - offset, 0)
-            scene.rootNode.addChildNode(planeNode)
-            offset += 0.739
+    func addStreetVertical() {
+        for verticalTwoWay in twoWayVerticalArray {
+            var offset = 0.0
+            for _ in 0...50 {
+                let streetPlane = SCNPlane(width: 4.027, height: 0.739)
+                let planeNode = SCNNode()
+                let material = SCNMaterial()
+                material.diffuse.contents = UIImage(named: "streetVertical")
+                material.isDoubleSided = true
+                streetPlane.firstMaterial = material
+                planeNode.geometry = streetPlane
+                planeNode.position = SCNVector3(verticalTwoWay.getMidline() - 0.025, 15 - offset, 0)
+                scene.rootNode.addChildNode(planeNode)
+                offset += 0.739
+            }
         }
     }
     
