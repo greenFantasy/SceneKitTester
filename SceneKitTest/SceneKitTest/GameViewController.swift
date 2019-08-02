@@ -42,11 +42,11 @@ class GameViewController: UIViewController {
         let planeNode = SCNNode()
         let material = SCNMaterial()
         // 126, 173, 76
-        material.diffuse.contents = UIColor(red: 133.0/255.0, green: 174.0/255.0, blue: 70.0/255.0, alpha: 1)
+        material.diffuse.contents = UIImage(named: "grass")
         material.isDoubleSided = true
         plane.firstMaterial = material
         planeNode.geometry = plane
-        planeNode.position = SCNVector3(0, 0, -10)
+        planeNode.position = SCNVector3(0, 0, -0.1)
         scene.rootNode.addChildNode(planeNode)
         
         
@@ -103,10 +103,10 @@ class GameViewController: UIViewController {
         createCar(0, -15, leftStreet: v2.getUpStreet())
         intersectionCreator()
         
-        addLineToScene(-22, 0, 1, height: 15)
-        addLineToScene(22, 0, 1, height: 15)
-        addLineToScene(0, -12, 1, width: 15)
-        addLineToScene(0, 14, 1, width: 15)
+//        addLineToScene(-22, 0, 1, height: 15)
+//        addLineToScene(22, 0, 1, height: 15)
+//        addLineToScene(0, -12, 1, width: 15)
+//        addLineToScene(0, 14, 1, width: 15)
     }
 
     func addBoxToScene() -> SCNNode {
@@ -196,6 +196,14 @@ class GameViewController: UIViewController {
         for horizontalTwoWay in twoWayHorizontalArray {
             for verticalTwoWay in twoWayVerticalArray {
                 let intersection = Intersection(horizontal: horizontalTwoWay, vertical: verticalTwoWay)
+                addStreetHorizontal(coordinates: intersection.getPosition())
+                addStreetVertical(coordinates: intersection.getPosition())
+            }
+        }
+        
+        for horizontalTwoWay in twoWayHorizontalArray {
+            for verticalTwoWay in twoWayVerticalArray {
+                let intersection = Intersection(horizontal: horizontalTwoWay, vertical: verticalTwoWay)
                 intersectionArray.append(intersection)
                 addImageOfIntersection(coordinates: intersection.getPosition())
                 for trafficLight in intersection.getAllLights() {
@@ -205,15 +213,47 @@ class GameViewController: UIViewController {
         }
     }
     
+    func addStreetHorizontal(coordinates: [Double]) {
+        var offset = 0.0
+        for _ in 0...100 {
+            let streetPlane = SCNPlane(width: 0.739, height: 4.027)
+            let planeNode = SCNNode()
+            let material = SCNMaterial()
+            material.diffuse.contents = UIImage(named: "streetHorizontal")
+            material.isDoubleSided = true
+            streetPlane.firstMaterial = material
+            planeNode.geometry = streetPlane
+            planeNode.position = SCNVector3(30 - offset, coordinates[1] + 0.025, 0)
+            scene.rootNode.addChildNode(planeNode)
+            offset += 0.739
+        }
+    }
+    
+    func addStreetVertical(coordinates: [Double]) {
+        var offset = 0.0
+        for _ in 0...50 {
+            let streetPlane = SCNPlane(width: 4.027, height: 0.739)
+            let planeNode = SCNNode()
+            let material = SCNMaterial()
+            material.diffuse.contents = UIImage(named: "streetVertical")
+            material.isDoubleSided = true
+            streetPlane.firstMaterial = material
+            planeNode.geometry = streetPlane
+            planeNode.position = SCNVector3(coordinates[0] - 0.025, 15 - offset, 0)
+            scene.rootNode.addChildNode(planeNode)
+            offset += 0.739
+        }
+    }
+    
     func addImageOfIntersection(coordinates: [Double]) {
         let streetPlane = SCNPlane(width: 10, height: 10)
         let planeNode = SCNNode()
         let material = SCNMaterial()
-        material.diffuse.contents = UIImage(named: "street")
+        material.diffuse.contents = UIImage(named: "intersection")
         material.isDoubleSided = true
         streetPlane.firstMaterial = material
         planeNode.geometry = streetPlane
-        planeNode.position = SCNVector3(coordinates[0], coordinates[1], 0)
+        planeNode.position = SCNVector3(coordinates[0], coordinates[1], 0.001)
         scene.rootNode.addChildNode(planeNode)
     }
 
