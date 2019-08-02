@@ -80,11 +80,11 @@ class Car: SKShapeNode {  // Car implements SKShapeNode class
     }
     
     func rotateNodeLeft(){
-        sceneNode.runAction(SCNAction.rotateBy(x: 0, y: 0, z: .pi/2, duration: 0.4))
+        sceneNode.runAction(SCNAction.rotateBy(x: 0, y: 0, z: .pi/2, duration: 0.25))
     }
 
     func rotateNodeRight(){
-        sceneNode.runAction(SCNAction.rotateBy(x: 0, y: 0, z: -.pi/2, duration: 0.4))
+        sceneNode.runAction(SCNAction.rotateBy(x: 0, y: 0, z: -.pi/2, duration: 0.25))
     }
     
     func rotateNodeRight(duration: Double) {
