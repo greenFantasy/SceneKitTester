@@ -22,6 +22,7 @@ class GameViewController: UIViewController {
     private var twoWayVerticalArray:[TwoWayVertical] = []
     private var lightArray:[TrafficLight] = []
     private var intersectionArray:[Intersection] = []
+    private var carsThrough = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -101,6 +102,11 @@ class GameViewController: UIViewController {
         createCar(-20, 0, leftStreet: h1.getRightStreet())
         createCar(0, -15, leftStreet: v2.getUpStreet())
         intersectionCreator()
+        
+        addLineToScene(-22, 0, 1, height: 15)
+        addLineToScene(22, 0, 1, height: 15)
+        addLineToScene(0, -12, 1, width: 15)
+        addLineToScene(0, 14, 1, width: 15)
     }
 
     func addBoxToScene() -> SCNNode {
@@ -111,8 +117,34 @@ class GameViewController: UIViewController {
         return node
     }
 
+    func isOutsideScreen(car: Car) -> Bool {
+        let x = car.getXPos()
+        let y = car.getYPos()
+        if (-22 < x && x < 22 && -12 < y && y < 14) {
+            return false
+        }
+        return true
+    }
+    
     func addBoxToScene(_ xPos: Double, _ yPos: Double, _ zPos:Double) -> SCNNode {
         let geometry = SCNBox(width: 1.0, height: 1.0, length: 1.0, chamferRadius: 0)
+        let node = SCNNode(geometry: geometry)
+        node.position = SCNVector3(xPos, yPos, zPos)
+        scene.rootNode.addChildNode(node)
+        return node
+    }
+    
+    
+    func addLineToScene(_ xPos: Double, _ yPos: Double, _ zPos:Double, width: Double) -> SCNNode {
+        let geometry = SCNBox(width: CGFloat(width), height: 0.5, length: 0.5, chamferRadius: 0)
+        let node = SCNNode(geometry: geometry)
+        node.position = SCNVector3(xPos, yPos, zPos)
+        scene.rootNode.addChildNode(node)
+        return node
+    }
+    
+    func addLineToScene(_ xPos: Double, _ yPos: Double, _ zPos:Double, height: Double) -> SCNNode {
+        let geometry = SCNBox(width: 0.5, height: CGFloat(height), length: 0.5, chamferRadius: 0)
         let node = SCNNode(geometry: geometry)
         node.position = SCNVector3(xPos, yPos, zPos)
         scene.rootNode.addChildNode(node)
@@ -310,8 +342,8 @@ class GameViewController: UIViewController {
     }
 
     func speedModifier(distance:Double) -> Double {
-        let minDistance = 2.0
-        let highSpeedDistance = 10.0
+        let minDistance = 2.5
+        let highSpeedDistance = 4.5
         if distance <= minDistance {
             return 0
         } else if (distance <= highSpeedDistance) {
@@ -356,6 +388,41 @@ class GameViewController: UIViewController {
                     moveCarForward(vehicle: vehicle)
                 }
             }
+            if (isOutsideScreen(car: vehicle)) {
+                print("x: " + String(vehicle.getXPos()))
+                print("y: " + String(vehicle.getYPos()))
+                if (vehicle.getDirection() == 0 && vehicle.getXPos() < 0) {
+                    createCar(30, vehicle.getYPos(), leftStreet: vehicle.getStreet())
+                    elementsToRemove.append(i)
+                    removeCar(vehicle)
+                } else if (vehicle.getDirection() == 1 && vehicle.getXPos() > 0) {
+                    createCar(-30, vehicle.getYPos(), leftStreet: vehicle.getStreet())
+                    elementsToRemove.append(i)
+                    removeCar(vehicle)
+                } else if (vehicle.getDirection() == 2 && vehicle.getYPos() < 0) {
+                    createCar(vehicle.getXPos(), 20, leftStreet: vehicle.getStreet())
+                    elementsToRemove.append(i)
+                    removeCar(vehicle)
+                } else if (vehicle.getDirection() == 3 && vehicle.getYPos() > 0) {
+                    createCar(vehicle.getXPos(), -20, leftStreet: vehicle.getStreet())
+                    elementsToRemove.append(i)
+                    removeCar(vehicle)
+                }
+            }
+        }
+        removeElementsFromArray(elementsToRemove: elementsToRemove, array: &carArray)
+    }
+    
+    func removeCar(_ vehicle: Car) {
+        vehicle.getNode().removeFromParentNode()
+        vehicle.getStreet().removeCar(car: vehicle)
+        carsThrough += 1
+    }
+    
+    func removeElementsFromArray(elementsToRemove: [Int], array: inout [Car]) {
+        let elementsReversed = elementsToRemove.reversed()
+        for i in elementsReversed {
+            array.remove(at: i)
         }
     }
 
