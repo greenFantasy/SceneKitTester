@@ -10,8 +10,13 @@ import UIKit
 import QuartzCore
 import SceneKit
 
-class GameViewController: UIViewController {
+enum BodyType: Int {
+    case sphere = 1
+    case wall = 2
+}
 
+class GameViewController: UIViewController, SCNPhysicsContactDelegate {
+    private var count = 0
     private var counter = 0
     private var ship:SCNNode?
     // fix plane to frame size
@@ -26,14 +31,14 @@ class GameViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+    
         // create a new scene
 
         // create and add a camera to the scene
         let cameraNode = SCNNode()
         cameraNode.camera = SCNCamera()
         scene.rootNode.addChildNode(cameraNode)
-        
+        scene.physicsWorld.contactDelegate = self
         // place the camera
         cameraNode.position = SCNVector3(x: 0, y: -10.5, z: 15)
         cameraNode.runAction(SCNAction.rotateBy(x: 0.5, y: 0, z: 0, duration: 0))
@@ -54,7 +59,7 @@ class GameViewController: UIViewController {
         let lightNode = SCNNode()
         lightNode.light = SCNLight()
         lightNode.light!.type = .omni
-        lightNode.position = SCNVector3(x: 0, y: 0, z: 20)
+        lightNode.position = SCNVector3(x: 0, y: -20, z: 20)
         scene.rootNode.addChildNode(lightNode)
 
         // create and add an ambient light to the scene
@@ -77,19 +82,19 @@ class GameViewController: UIViewController {
         // retrieve the SCNView
         let scnView = self.view as! SCNView
         scnView.delegate = self
-
+        scnView.scene?.physicsWorld.contactDelegate = self
         // set the scene to the view
         scnView.scene = scene
-
+       
         // allows the user to manipulate the camera
-        scnView.allowsCameraControl = true
+        scnView.allowsCameraControl = false
 
         // show statistics such as fps and timing information
         scnView.showsStatistics = true
 
         // configure the view
         scnView.backgroundColor = UIColor.black
-
+        
         // add a tap gesture recognizer
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
         scnView.addGestureRecognizer(tapGesture)
@@ -103,6 +108,50 @@ class GameViewController: UIViewController {
         createCar(0, -15, leftStreet: v2.getUpStreet())
         addStreetHorizontal()
         addStreetVertical()
+        addBuildingsToScene(-1.5, 0, "blue", 0)
+        addBuildingsToScene(1.5, 0, "yellow", .pi/2)
+        addBuildingsToScene(0, -2.2, "red", .pi)
+        var offset = 0.0
+        
+        for _ in 0...2 {
+            let number = Int.random(in: 0 ..< 3)
+            
+            switch number {
+            case 0:
+               addBuildingsToScene(offset + 8, -2.2, "red", .pi)
+               addBuildingsToScene(offset + 8, 1.0, "blue", 0)
+            case 1:
+                addBuildingsToScene(offset + 8, -2.2, "blue", .pi)
+                addBuildingsToScene(offset + 8, 1.0, "yellow", 0)
+            case 2:
+                addBuildingsToScene(offset + 8, -2.2, "yellow", .pi)
+                addBuildingsToScene(offset + 8, 1.0, "red", 0)
+            default:
+                break
+            }
+            offset += 3
+        }
+        
+        offset = 0.0
+        for _ in 0...2 {
+            let number = Int.random(in: 0 ..< 3)
+            
+            switch number {
+            case 0:
+                addBuildingsToScene(offset - 8, -2.2, "red", .pi)
+                addBuildingsToScene(offset - 8, 1.0, "yellow", 0)
+            case 1:
+                addBuildingsToScene(offset - 8, -2.2, "blue", .pi)
+                addBuildingsToScene(offset - 8, 1.0, "red", 0)
+            case 2:
+                addBuildingsToScene(offset - 8, -2.2, "yellow", .pi)
+                addBuildingsToScene(offset - 8, 1.0, "blue", 0)
+            default:
+                break
+            }
+            offset -= 3
+        }
+        
         intersectionCreator()
         
 //        addLineToScene(-22, 0, 1, height: 15)
@@ -153,16 +202,34 @@ class GameViewController: UIViewController {
         return node
     }
 
-    func addCarToScene(_ xPos: Double, _ yPos: Double, _ zPos:Double) -> SCNNode {
-        let newScene = SCNScene(named: "art.scnassets/Car.scn")
+    func addCarToScene(_ xPos: Double, _ yPos: Double, _ zPos:Double, _ color:String) -> SCNNode {
+        let newScene = SCNScene(named: "art.scnassets/Car" + color + ".scn")
         let node = newScene!.rootNode.childNode(withName: "Car", recursively: true)!
         node.runAction(SCNAction.rotateBy(x: .pi/2, y: 0, z: 0, duration: 0))
         node.runAction(SCNAction.scale(by: 0.5, duration: 0))
         node.position = SCNVector3(xPos, yPos, zPos)
+        node.physicsBody = SCNPhysicsBody(type: .static, shape: nil)
+        node.physicsBody?.categoryBitMask = BodyType.sphere.rawValue
+        node.physicsBody?.collisionBitMask = BodyType.sphere.rawValue
+        node.physicsBody?.contactTestBitMask = BodyType.sphere.rawValue
+        node.physicsBody?.isAffectedByGravity = false
         scene.rootNode.addChildNode(node)
         return node
     }
 
+    func addBuildingsToScene(_ xPos: Double, _ yPos: Double, _ color:String, _ rotation:Double) {
+        let newScene = SCNScene(named: "art.scnassets/building.scn")
+        let node = newScene!.rootNode.childNode(withName: "apartments2_000", recursively: true)!
+        node.runAction(SCNAction.rotateBy(x: .pi/2, y: 0, z: CGFloat(rotation), duration: 0))
+        node.runAction(SCNAction.scale(by: 0.3, duration: 0))
+        let material = SCNMaterial()
+        material.diffuse.contents = UIImage(named: color)
+        node.geometry?.firstMaterial = material
+        let max = node.boundingBox.max
+        let h = CGFloat(max.y)
+        node.position = SCNVector3(xPos, yPos, Double(h/2))
+        scene.rootNode.addChildNode(node)
+    }
     
     func createCar(_ xPos:Double, _ yPos:Double, leftStreet: StreetProtocol) {
         // let number = Int.random(in: -700 ... 300)
@@ -174,7 +241,20 @@ class GameViewController: UIViewController {
         }
         if create {
             let car = Car(x: xPos, y: yPos, street: leftStreet)
-            let node = addCarToScene(xPos, yPos, 0)
+            var color = ""
+            let number = Int.random(in: 0 ..< 3)
+            
+            switch number {
+            case 0:
+                color = "Red"
+            case 1:
+                color = "Blue"
+            case 2:
+                color = "Yellow"
+            default:
+                break
+            }
+            let node = addCarToScene(xPos, yPos, 0, color)
             car.setNode(node: node)
             carArray.append(car)
         }
@@ -276,9 +356,9 @@ class GameViewController: UIViewController {
             let result = hitResults[0]
 
             let node = result.node
-            print(node)
+            //print(node)
             if let name = node.name {
-                print(name)
+                //print(name)
                 if let index = Int(name) {
                     lightArray[index].changeState()
                     if (index % 2 == 0) {
@@ -305,11 +385,6 @@ class GameViewController: UIViewController {
         } else {
             return .all
         }
-    }
-
-    func update() {
-        print("updating")
-
     }
 
     func calcXDistance(car1: Car?, car2: Car?) -> Double {
@@ -410,8 +485,8 @@ class GameViewController: UIViewController {
                 }
             }
             if (isOutsideScreen(car: vehicle)) {
-                print("x: " + String(vehicle.getXPos()))
-                print("y: " + String(vehicle.getYPos()))
+               // print("x: " + String(vehicle.getXPos()))
+               // print("y: " + String(vehicle.getYPos()))
                 if (vehicle.getDirection() == 0 && vehicle.getXPos() < 0) {
                     createCar(30, vehicle.getYPos(), leftStreet: vehicle.getStreet())
                     createCar(40, vehicle.getYPos(), leftStreet: vehicle.getStreet())
@@ -473,9 +548,112 @@ class GameViewController: UIViewController {
         }
         return nil
     }
+    
+    func checkCollisions() {
+        
+        var hitCars: [Car] = []
+        let displaySize: CGRect = UIScreen.main.bounds
+        let displayWidth = displaySize.width
+        let displayHeight = displaySize.height
+        print(displayWidth, displayHeight)
+        for i in 0...carArray.count-2 {
+//            if (carArray[i].getXPos() > -Int(scene!.frame.width)/2 && carArray[i].getXPos() <  Int(scene!.frame.width)/2 && carArray[i].getYPos() > -Int(scene!.size.height)/2 && carArray[i].getYPos() < Int(scene!.size.height)/2)
+//            {
+                for j in i+1...carArray.count-1 {
+                    if (carArray[i].getNode().frame.intersects(carArray[j].getNode().frame) && (!carArray[i].getIntersected() || !carArray[j].getIntersected()) )
+                    {
+                        print("test")
+                        hitCars.append(carArray[j])
+                        hitCars.append(carArray[i])
+                    }
+                    
+                    
+             //   }
+            }
+            
+        }
+        
+        if (hitCars.count>0){
+            
+            for i in 0...hitCars.count-1 {
+                
+                if (i%2==1) {
+                    if (hitCars[i].getLastTurn() == 2 && hitCars[i-1].getLastTurn() == 2) {
+                        print("two left turning hit cars, no issue")
+                    } else {
+                        //hitCounter += 1
+                    //    hitCars[i].changeIntersected()
+                    //    hitCars[i-1].changeIntersected()
+                       // print("Car Hit #" + String(hitCounter))
+                        gameOverScreen()
+                    }
+                }
+                
+            }
+            
+        }
+        
+    }
+    
+    func gameOverScreen() {
+//        timer?.invalidate()
+//        timer = nil
+//
+//        gameOverLabel.position = CGPoint(x: frame.midX, y: frame.midY)
+//        gameOverLabel.zPosition = 150
+//
+//        endView.isHidden = false
+//
+//        var isHighScore = false
+//
+//        if user.highScore < score {
+//            isHighScore = true
+//            let realm = try! Realm()
+//
+//            try! realm.write {
+//                user.highScore = score
+//            }
+//        }
+//
+//        let labels = getLabelsInView(view: endView)
+//        for label in labels {
+//            score = carsThrough
+//            if isHighScore {
+//                label.text = "Game over!  Score: " + String(score) + "! Highscore"
+//            } else {
+//                label.text = "Game over!  Score: " + String(score)
+//            }
+//            label.frame.origin = CGPoint(x: frame.midX, y: frame.midY)
+//        }
+        print("Collision")
+    }
+    
+    func getLabelsInView(view: UIView) -> [UILabel] {
+        var results = [UILabel]()
+        for subview in view.subviews as [UIView] {
+            if let labelView = subview as? UILabel {
+                results += [labelView]
+            } else {
+                results += getLabelsInView(view: subview)
+            }
+        }
+        return results
+    }
+    
+    
+    func physicsWorld(_ world: SCNPhysicsWorld, didBegin contact: SCNPhysicsContact) {
+        let contactMask = contact.nodeA.categoryBitMask | contact.nodeB.categoryBitMask
+        switch (contactMask) {
+        case BodyType.sphere.rawValue :
+            print("hit", count)
+            count += 1
+        default:
+            return
+        }
+    }
 }
 
-// 1
+
 extension GameViewController: SCNSceneRendererDelegate {
     // 2
     func renderer(_ renderer: SCNSceneRenderer, updateAtTime time: TimeInterval) {
@@ -486,5 +664,6 @@ extension GameViewController: SCNSceneRendererDelegate {
             spaceShip.position = SCNVector3(spaceShip.position.x, spaceShip.position.y, spaceShip.position.z-1)
         }
         move()
+     //   checkCollisions()
     }
 }
