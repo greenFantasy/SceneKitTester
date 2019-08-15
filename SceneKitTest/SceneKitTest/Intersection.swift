@@ -15,7 +15,6 @@ class Intersection {
     // an intersection is created every time two TwoWay intersect
     // each intersection automatically creates 4 traffic lights, which are added to the screen and completely functional
     // each of the 4 traffic lights control one of the 4 directions at the intersection
-    // turning while watching cars on other streets has not been implemented, so cars on different streets are completely unaware of each other
     
     private var xCenter:Double
     private var yCenter:Double
@@ -23,13 +22,13 @@ class Intersection {
     private var verticalTwoWay:TwoWayVertical
     private var width = 1.0
     private var height = 1.0
-    private var extra = 0.0
+    private var extra = 2.0
     private var lightLeft:TrafficLight
     private var lightRight:TrafficLight
     private var lightDown:TrafficLight
     private var lightUp:TrafficLight
     private var allFourLights:[TrafficLight] = []
-    private var lightDistance = 1.0 // just used for placing lights graphically, does not have any logical effect in the code
+    private var lightDistance = 1.5 // just used for placing lights graphically, does not have any logical effect in the code
     
     init (horizontal: TwoWayHorizontal, vertical: TwoWayVertical) {
         xCenter = vertical.getMidline()

@@ -104,7 +104,9 @@ class GameViewController: UIViewController {
         addStreetHorizontal()
         addStreetVertical()
         intersectionCreator()
-        
+        addLineToScene(2.0, 6.0, 0, height: 2)
+        addLineToScene(6.0, 2.0, 0, width: 2)
+        //var a = UpStreetLeftTurn()
 //        addLineToScene(-22, 0, 1, height: 15)
 //        addLineToScene(22, 0, 1, height: 15)
 //        addLineToScene(0, -12, 1, width: 15)
@@ -137,12 +139,11 @@ class GameViewController: UIViewController {
     }
     
     
-    func addLineToScene(_ xPos: Double, _ yPos: Double, _ zPos:Double, width: Double) -> SCNNode {
+    func addLineToScene(_ xPos: Double, _ yPos: Double, _ zPos:Double, width: Double) {
         let geometry = SCNBox(width: CGFloat(width), height: 0.5, length: 0.5, chamferRadius: 0)
         let node = SCNNode(geometry: geometry)
         node.position = SCNVector3(xPos, yPos, zPos)
         scene.rootNode.addChildNode(node)
-        return node
     }
     
     func addLineToScene(_ xPos: Double, _ yPos: Double, _ zPos:Double, height: Double) -> SCNNode {
@@ -157,7 +158,7 @@ class GameViewController: UIViewController {
         let newScene = SCNScene(named: "art.scnassets/Car.scn")
         let node = newScene!.rootNode.childNode(withName: "Car", recursively: true)!
         node.runAction(SCNAction.rotateBy(x: .pi/2, y: 0, z: 0, duration: 0))
-        node.runAction(SCNAction.scale(by: 0.5, duration: 0))
+        node.runAction(SCNAction.scale(by: 0.4, duration: 0))
         node.position = SCNVector3(xPos, yPos, zPos)
         scene.rootNode.addChildNode(node)
         return node
@@ -200,6 +201,10 @@ class GameViewController: UIViewController {
                 let intersection = Intersection(horizontal: horizontalTwoWay, vertical: verticalTwoWay)
                 intersectionArray.append(intersection)
                 addImageOfIntersection(coordinates: intersection.getPosition())
+                addLineToScene(intersection.getXFrame()[0], intersection.getPosition()[1], 0, height: 4.0)
+                addLineToScene(intersection.getXFrame()[1], intersection.getPosition()[1], 0, height: 4.0)
+                addLineToScene(intersection.getPosition()[0], intersection.getYFrame()[0], 0, width: 4.0)
+                addLineToScene(intersection.getPosition()[0], intersection.getYFrame()[1], 0, width: 4.0)
                 for trafficLight in intersection.getAllLights() {
                     createLight(trafficLight: trafficLight)
                 }
@@ -276,9 +281,7 @@ class GameViewController: UIViewController {
             let result = hitResults[0]
 
             let node = result.node
-            print(node)
             if let name = node.name {
-                print(name)
                 if let index = Int(name) {
                     lightArray[index].changeState()
                     if (index % 2 == 0) {
@@ -363,12 +366,12 @@ class GameViewController: UIViewController {
     }
 
     func speedModifier(distance:Double) -> Double {
-        let minDistance = 3.0
-        let highSpeedDistance = 6.0
+        let minDistance = 2.25
+        let highSpeedDistance = 4.5
         if distance <= minDistance {
             return 0
         } else if (distance <= highSpeedDistance) {
-            return Double((distance - minDistance))/Double(highSpeedDistance-minDistance)
+            return (distance - minDistance)/(highSpeedDistance-minDistance)
         }
         else {
             return 1
@@ -390,13 +393,12 @@ class GameViewController: UIViewController {
             if let lightInFront = tempLight {
                 if (isVehicleCloseToLight(vehicle: vehicle, light: lightInFront) && lightInFront.isRed()) {
                     moveVehicle = false
+                    vehicle.setCurrentSpeed(speed: 0.02)
                 }
             }
-
+            
             if (moveVehicle) {
-
                 if let intersection = isCarAtAnyIntersectionChecker(vehicle) {
-
                     _ = vehicle.addToIntersectionArray(intersection: intersection)
                     if (vehicle.getLastTurn() == 0 || vehicle.isLastTurnCompleted()) {
                         moveCarForward(vehicle: vehicle)
@@ -410,8 +412,6 @@ class GameViewController: UIViewController {
                 }
             }
             if (isOutsideScreen(car: vehicle)) {
-                print("x: " + String(vehicle.getXPos()))
-                print("y: " + String(vehicle.getYPos()))
                 if (vehicle.getDirection() == 0 && vehicle.getXPos() < 0) {
                     createCar(30, vehicle.getYPos(), leftStreet: vehicle.getStreet())
                     createCar(40, vehicle.getYPos(), leftStreet: vehicle.getStreet())
@@ -467,7 +467,10 @@ class GameViewController: UIViewController {
 
     func isCarAtAnyIntersectionChecker(_ car: Car) -> Intersection? {
         for intersection in intersectionArray {
-            if (intersection.isCarAtIntersection(car)) {
+//            if (intersection.isCarAtIntersection(car)) {
+//                return intersection
+//            }
+            if (car.isAtIntersection2(intersection: intersection)) {
                 return intersection
             }
         }

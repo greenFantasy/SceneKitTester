@@ -27,6 +27,9 @@ class Car: SKShapeNode {  // Car implements SKShapeNode class
     private var turnArray:[Int] = [] // when 0, it's going to continue straight, when 1, the car will turn right, when 2, the car will turn left
     private var completedTurnsArray:[Bool] = []
     private var currentIntersection: Intersection?
+    private var currentTurn:UpStreetLeftTurn?
+    private var counter = 0
+    private var currentSpeed = 0.0
     
     //private let finalDestination
     
@@ -48,11 +51,28 @@ class Car: SKShapeNode {  // Car implements SKShapeNode class
     
     func fixPosOnStreet() {
         if (currentStreet.getDirection() <= 1) {
-            yPos = Double(currentStreet.getPosition())
+            let temp = yPos - currentStreet.getPosition()
+            if ((temp >= -0.005 && temp <= 0.005) || temp >= 0.5 || temp <= -0.5) {
+                yPos = currentStreet.getPosition()
+            } else {
+                yPos = (29.0 * yPos + currentStreet.getPosition())/30.0
+            }
         } else {
-            xPos = Double(currentStreet.getPosition())
-            print(xPos)
+            let temp = xPos - currentStreet.getPosition()
+            if ((temp >= -0.005 && temp <= 0.005) || temp >= 0.5 || temp <= -0.5) {
+                xPos = currentStreet.getPosition()
+            } else {
+                xPos = (29.0 * xPos + currentStreet.getPosition())/30.0
+            }
         }
+    }
+    
+    func getCurrentTurn() -> UpStreetLeftTurn? {
+        return currentTurn
+    }
+    
+    func getPreviousStreet() -> StreetProtocol {
+        return previousStreet
     }
     
     func initialRotate() {
@@ -80,11 +100,11 @@ class Car: SKShapeNode {  // Car implements SKShapeNode class
     }
     
     func rotateNodeLeft(){
-        sceneNode.runAction(SCNAction.rotateBy(x: 0, y: 0, z: .pi/2, duration: 0.4))
+        sceneNode.runAction(SCNAction.rotateBy(x: 0, y: 0, z: .pi/2, duration: 1.0))
     }
 
     func rotateNodeRight(){
-        sceneNode.runAction(SCNAction.rotateBy(x: 0, y: 0, z: -.pi/2, duration: 0.4))
+        sceneNode.runAction(SCNAction.rotateBy(x: 0, y: 0, z: -.pi/2, duration: 0.8))
     }
     
     func rotateNodeRight(duration: Double) {
@@ -96,6 +116,33 @@ class Car: SKShapeNode {  // Car implements SKShapeNode class
         initialRotate()
     }
     
+    func adjustSpeed(_ xVel: Double, _ yVel: Double) -> [Double] {
+        // prevents the car from immediately going to topSpeed after changing direction
+        var tempSpeed = 0.0
+        var x = xVel
+        var y = yVel
+        if (abs(x) > abs(y)) {
+            tempSpeed = x
+        } else {
+            tempSpeed = y
+        }
+        if (abs(currentSpeed) < abs(tempSpeed)) {
+            currentSpeed = currentSpeed + 0.01 * sign(tempSpeed)
+        } else {
+            currentSpeed = tempSpeed
+        }
+        if (abs(currentSpeed) > topSpeed) {
+            currentSpeed = topSpeed * sign(currentSpeed)
+        }
+        if (abs(x) > abs(y)) {
+            x = currentSpeed
+        } else {
+            y = currentSpeed
+        }
+        return [x,y]
+    }
+    
+    
     func move(xVel:Double, yVel:Double) {
         if let intersection = currentIntersection {
             if !(currentStreet.getDirection() == previousStreet.getDirection()) {
@@ -103,20 +150,37 @@ class Car: SKShapeNode {  // Car implements SKShapeNode class
                     previousStreet.removeCar(car: self)
                     previousStreet = currentStreet
                     currentIntersection = nil
+                    currentTurn = nil
                 }
             }
         }
-        
+        let speedArray = adjustSpeed(xVel, yVel)
         if (!intersected) {
-            xPos += xVel
-            yPos += yVel
+            if (currentSpeed > 0.02) {
+                fixPosOnStreet()
+            }
+            xPos += speedArray[0]
+            yPos += speedArray[1]
         } else {
             let number = Int.random(in: 0 ... 30)
             if (number == 10) {
                 rotateNodeLeft()
             }
         }
+        if (currentTurn != nil) {
+            currentTurn!.turnCar()
+            counter += 1
+            if (getDirection() % 2 == 0) {
+                currentSpeed = -0.1
+            } else {
+                currentSpeed = 0.1
+            }
+        }
         updateShapeNodePos()
+    }
+    
+    func setCurrentSpeed(speed: Double) {
+        currentSpeed = speed
     }
     
     func getDirection() -> Int {
@@ -248,7 +312,16 @@ class Car: SKShapeNode {  // Car implements SKShapeNode class
             fixPosOnStreet()
             rotateNodeRight()
             completedTurnsArray[intersectionArray.count - 1] = true
+            if (getDirection() % 2 == 0) {
+                currentSpeed = -0.1
+            } else {
+                currentSpeed = 0.1
+            }
         }
+    }
+    
+    func getCurrentIntersection() -> Intersection? {
+        return currentIntersection
     }
     
     func makeLeftTurn(intersection: Intersection) {
@@ -353,8 +426,8 @@ class Car: SKShapeNode {  // Car implements SKShapeNode class
                 contains = true
             }
         }
+        currentIntersection = intersection
         if (!contains) {
-            currentIntersection = intersection
             intersectionArray.append(intersection)
         }
         return !contains
@@ -375,6 +448,7 @@ class Car: SKShapeNode {  // Car implements SKShapeNode class
         fixPosOnStreet()
         rotateNodeLeft()
         completedTurnsArray[intersectionArray.count - 1] = true
+        currentTurn = UpStreetLeftTurn(car: self)
     }
     
     func isAtIntersection2(intersection: Intersection) -> Bool {
