@@ -16,7 +16,7 @@ class Car: SKShapeNode {  // Car implements SKShapeNode class
     
     private var sceneNode = SCNNode(geometry: SCNBox(width: 1.0, height: 1.0, length: 1.0, chamferRadius: 0.0))
     private var geometry = SCNBox(width: 1.0, height: 1.0, length: 1.0, chamferRadius: 0)
-    private let topSpeed:Double = 0.2
+    private let topSpeed:Double = 0.15
     private var xPos:Double
     private var yPos:Double
     private var previousStreet:StreetProtocol
@@ -127,7 +127,11 @@ class Car: SKShapeNode {  // Car implements SKShapeNode class
             tempSpeed = y
         }
         if (abs(currentSpeed) < abs(tempSpeed)) {
-            currentSpeed = currentSpeed + 0.01 * sign(tempSpeed)
+            if (abs(currentSpeed) < 0.05) {
+                currentSpeed = currentSpeed + 0.002 * sign(tempSpeed)
+            } else {
+                currentSpeed = currentSpeed + 0.001 * sign(tempSpeed)
+            }
         } else {
             currentSpeed = tempSpeed
         }

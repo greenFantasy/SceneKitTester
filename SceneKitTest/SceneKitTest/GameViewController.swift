@@ -87,7 +87,7 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate {
         scnView.scene = scene
        
         // allows the user to manipulate the camera
-        scnView.allowsCameraControl = false
+        scnView.allowsCameraControl = true
 
         // show statistics such as fps and timing information
         scnView.showsStatistics = true
@@ -105,6 +105,11 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate {
         let h2 = createTwoWayHorizontal(midline: 5)
         createCar(0, 20, leftStreet: v1.getDownStreet())
         createCar(-20, 0, leftStreet: h1.getRightStreet())
+        createCar(0, -20, leftStreet: v2.getUpStreet())
+        createCar(0, -25, leftStreet: v2.getUpStreet())
+        createCar(0, -30, leftStreet: v2.getUpStreet())
+        createCar(0, -35, leftStreet: v2.getUpStreet())
+        createCar(0, -15, leftStreet: v2.getUpStreet())
         createCar(0, -15, leftStreet: v2.getUpStreet())
         addStreetHorizontal()
         addStreetVertical()
@@ -257,6 +262,8 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate {
             }
             let node = addCarToScene(xPos, yPos, 0, color)
             car.setNode(node: node)
+            car.getNode().physicsBody = SCNPhysicsBody(type: SCNPhysicsBodyType.kinematic, shape: SCNPhysicsShape(geometry: SCNBox(width: 3.0, height: 3.0, length: 3.0, chamferRadius: 0.0)))
+            car.getNode().categoryBitMask = 1
             carArray.append(car)
         }
     }
@@ -646,9 +653,25 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate {
     
     func physicsWorld(_ world: SCNPhysicsWorld, didBegin contact: SCNPhysicsContact) {
         let contactMask = contact.nodeA.categoryBitMask | contact.nodeB.categoryBitMask
+        var isCar1 = false
+        var isCar2 = false
+        for car in carArray {
+            if (car.getNode() === contact.nodeA) {
+                isCar1 = true
+            }
+            if (car.getNode() === contact.nodeB) {
+                isCar2 = true
+            }
+        }
+        if (isCar1 && isCar2) {
+            print("code thinks two cars are colliding")
+        } else {
+            print("something is wrong")
+        }
         switch (contactMask) {
         case BodyType.sphere.rawValue :
             print("hit", count)
+            
             count += 1
         default:
             return
