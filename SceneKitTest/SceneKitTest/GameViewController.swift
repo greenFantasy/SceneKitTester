@@ -16,6 +16,7 @@ enum BodyType: Int {
 }
 
 class GameViewController: UIViewController, SCNPhysicsContactDelegate {
+    
     private var count = 0
     private var counter = 0
     private var ship:SCNNode?
@@ -29,6 +30,7 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate {
     private var intersectionArray:[Intersection] = []
     private var carsThrough = 0
 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     
