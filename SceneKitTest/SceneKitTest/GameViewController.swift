@@ -16,7 +16,7 @@ enum BodyType: Int {
 }
 
 class GameViewController: UIViewController, SCNPhysicsContactDelegate {
-    
+
     private var count = 0
     private var counter = 0
     private var ship:SCNNode?
@@ -30,10 +30,10 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate {
     private var intersectionArray:[Intersection] = []
     private var carsThrough = 0
 
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+
         // create a new scene
 
         // create and add a camera to the scene
@@ -55,8 +55,8 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate {
         planeNode.geometry = plane
         planeNode.position = SCNVector3(0, 0, -0.1)
         scene.rootNode.addChildNode(planeNode)
-        
-        
+
+
         // create and add a light to the scene
         let lightNode = SCNNode()
         lightNode.light = SCNLight()
@@ -79,15 +79,14 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate {
         //ship.runAction(SCNAction.repeatForever(SCNAction.rotateBy(x: 0, y: 2, z: 0, duration: 1)))
         ship.runAction(SCNAction.repeatForever(SCNAction.rotateBy(x: 0, y: 0, z: 0, duration: 1)))
         // run the update function repeatedly
-        
-        
+
         // retrieve the SCNView
         let scnView = self.view as! SCNView
         scnView.delegate = self
         scnView.scene?.physicsWorld.contactDelegate = self
         // set the scene to the view
         scnView.scene = scene
-       
+
         // allows the user to manipulate the camera
         scnView.allowsCameraControl = true
 
@@ -96,7 +95,7 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate {
 
         // configure the view
         scnView.backgroundColor = UIColor.black
-        
+
         // add a tap gesture recognizer
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
         scnView.addGestureRecognizer(tapGesture)
@@ -119,10 +118,10 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate {
         addBuildingsToScene(1.5, 0, "yellow", .pi/2)
         addBuildingsToScene(0, -2.2, "red", .pi)
         var offset = 0.0
-        
+
         for _ in 0...2 {
             let number = Int.random(in: 0 ..< 3)
-            
+
             switch number {
             case 0:
                addBuildingsToScene(offset + 8, -2.2, "red", .pi)
@@ -138,11 +137,11 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate {
             }
             offset += 3
         }
-        
+
         offset = 0.0
         for _ in 0...2 {
             let number = Int.random(in: 0 ..< 3)
-            
+
             switch number {
             case 0:
                 addBuildingsToScene(offset - 8, -2.2, "red", .pi)
@@ -158,7 +157,7 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate {
             }
             offset -= 3
         }
-        
+
         intersectionCreator()
         addLineToScene(2.0, 6.0, 0, height: 2)
         addLineToScene(6.0, 2.0, 0, width: 2)
@@ -185,7 +184,7 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate {
         }
         return true
     }
-    
+
     func addBoxToScene(_ xPos: Double, _ yPos: Double, _ zPos:Double) -> SCNNode {
         let geometry = SCNBox(width: 1.0, height: 1.0, length: 1.0, chamferRadius: 0)
         let node = SCNNode(geometry: geometry)
@@ -193,15 +192,15 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate {
         scene.rootNode.addChildNode(node)
         return node
     }
-    
-    
+
+
     func addLineToScene(_ xPos: Double, _ yPos: Double, _ zPos:Double, width: Double) {
         let geometry = SCNBox(width: CGFloat(width), height: 0.5, length: 0.5, chamferRadius: 0)
         let node = SCNNode(geometry: geometry)
         node.position = SCNVector3(xPos, yPos, zPos)
         scene.rootNode.addChildNode(node)
     }
-    
+
     func addLineToScene(_ xPos: Double, _ yPos: Double, _ zPos:Double, height: Double) -> SCNNode {
         let geometry = SCNBox(width: 0.5, height: CGFloat(height), length: 0.5, chamferRadius: 0)
         let node = SCNNode(geometry: geometry)
@@ -216,7 +215,7 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate {
         node.runAction(SCNAction.rotateBy(x: .pi/2, y: 0, z: 0, duration: 0))
         node.runAction(SCNAction.scale(by: 0.4, duration: 0))
         node.position = SCNVector3(xPos, yPos, zPos)
-        node.physicsBody = SCNPhysicsBody(type: .static, shape: nil)
+        node.physicsBody = SCNPhysicsBody(type: .static, shape: SCNPhysicsShape(geometry: SCNBox(width: 0.9, height: 1.8, length: 1.0, chamferRadius: 0.0)))
         node.physicsBody?.categoryBitMask = BodyType.sphere.rawValue
         node.physicsBody?.collisionBitMask = BodyType.sphere.rawValue
         node.physicsBody?.contactTestBitMask = BodyType.sphere.rawValue
@@ -238,7 +237,7 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate {
         node.position = SCNVector3(xPos, yPos, Double(h/2))
         scene.rootNode.addChildNode(node)
     }
-    
+
     func createCar(_ xPos:Double, _ yPos:Double, leftStreet: StreetProtocol) {
         // let number = Int.random(in: -700 ... 300)
         var create = true
@@ -251,7 +250,7 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate {
             let car = Car(x: xPos, y: yPos, street: leftStreet)
             var color = ""
             let number = Int.random(in: 0 ..< 3)
-            
+
             switch number {
             case 0:
                 color = "Red"
@@ -300,7 +299,7 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate {
             }
         }
     }
-    
+
     func addStreetHorizontal() {
         for horizontalTwoWay in twoWayHorizontalArray {
             var offset = 0.0
@@ -318,7 +317,7 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate {
             }
         }
     }
-    
+
     func addStreetVertical() {
         for verticalTwoWay in twoWayVerticalArray {
             var offset = 0.0
@@ -336,7 +335,7 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate {
             }
         }
     }
-    
+
     func addImageOfIntersection(coordinates: [Double]) {
         let streetPlane = SCNPlane(width: 10, height: 10)
         let planeNode = SCNNode()
@@ -415,7 +414,7 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate {
             return 1000000
         }
     }
-    
+
     func calcYDistance(car1: Car?, car2: Car?) -> Double {
         //        let boundingBox1 = car1.getNode().path!.boundingBox
         //        let vehicleWidth1 = boundingBox1.size.width/2
@@ -464,7 +463,7 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate {
 
     func moveCarForward(vehicle: Car) {
         let vec = vehicle.directionToVector()
-        
+
         vehicle.move(xVel: Double(vec[0]) * vehicle.getTopSpeed() * speedModifier(distance: absoluteValue(calcXDistance(car1: vehicle, car2: vehicle.getClosestCar()))), yVel: Double(vec[1]) * vehicle.getTopSpeed() * speedModifier(distance: absoluteValue(calcYDistance(car1: vehicle, car2: vehicle.getClosestCar()))))
     }
 
@@ -480,7 +479,7 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate {
                     vehicle.setCurrentSpeed(speed: 0.02)
                 }
             }
-            
+
             if (moveVehicle) {
                 if let intersection = isCarAtAnyIntersectionChecker(vehicle) {
                     _ = vehicle.addToIntersectionArray(intersection: intersection)
@@ -521,13 +520,13 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate {
         }
         removeElementsFromArray(elementsToRemove: elementsToRemove, array: &carArray)
     }
-    
+
     func removeCar(_ vehicle: Car) {
         vehicle.getNode().removeFromParentNode()
         vehicle.getStreet().removeCar(car: vehicle)
         carsThrough += 1
     }
-    
+
     func removeElementsFromArray(elementsToRemove: [Int], array: inout [Car]) {
         let elementsReversed = elementsToRemove.reversed()
         for i in elementsReversed {
@@ -560,9 +559,9 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate {
         }
         return nil
     }
-    
+
     func checkCollisions() {
-        
+
         var hitCars: [Car] = []
         let displaySize: CGRect = UIScreen.main.bounds
         let displayWidth = displaySize.width
@@ -578,17 +577,17 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate {
                         hitCars.append(carArray[j])
                         hitCars.append(carArray[i])
                     }
-                    
-                    
+
+
              //   }
             }
-            
+
         }
-        
+
         if (hitCars.count>0){
-            
+
             for i in 0...hitCars.count-1 {
-                
+
                 if (i%2==1) {
                     if (hitCars[i].getLastTurn() == 2 && hitCars[i-1].getLastTurn() == 2) {
                         print("two left turning hit cars, no issue")
@@ -600,13 +599,13 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate {
                         gameOverScreen()
                     }
                 }
-                
+
             }
-            
+
         }
-        
+
     }
-    
+
     func gameOverScreen() {
 //        timer?.invalidate()
 //        timer = nil
@@ -639,7 +638,7 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate {
 //        }
         print("Collision")
     }
-    
+
     func getLabelsInView(view: UIView) -> [UILabel] {
         var results = [UILabel]()
         for subview in view.subviews as [UIView] {
@@ -651,34 +650,31 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate {
         }
         return results
     }
-    
-    
+
+
     func physicsWorld(_ world: SCNPhysicsWorld, didBegin contact: SCNPhysicsContact) {
         let contactMask = contact.nodeA.categoryBitMask | contact.nodeB.categoryBitMask
-        var isCar1 = false
-        var isCar2 = false
+        stopCar(car: getCarFromNode(node: contact.nodeA))
+        stopCar(car: getCarFromNode(node: contact.nodeB))
+        gameOverScreen()
+        count += 1
+    }
+
+    func getCarFromNode(node: SCNNode) -> Car? {
         for car in carArray {
-            if (car.getNode() === contact.nodeA) {
-                isCar1 = true
-            }
-            if (car.getNode() === contact.nodeB) {
-                isCar2 = true
+            if (node === car.getNode()) {
+                return car
             }
         }
-        if (isCar1 && isCar2) {
-            print("code thinks two cars are colliding")
-        } else {
-            print("something is wrong")
-        }
-        switch (contactMask) {
-        case BodyType.sphere.rawValue :
-            print("hit", count)
-            
-            count += 1
-        default:
-            return
+        return nil
+    }
+
+    func stopCar(car: Car?) {
+        if let vehicle = car {
+            vehicle.changeIntersected()
         }
     }
+
 }
 
 
