@@ -87,7 +87,7 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate {
         scnView.scene = scene
        
         // allows the user to manipulate the camera
-        scnView.allowsCameraControl = false
+        scnView.allowsCameraControl = true
 
         // show statistics such as fps and timing information
         scnView.showsStatistics = true
@@ -209,7 +209,7 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate {
         node.runAction(SCNAction.rotateBy(x: .pi/2, y: 0, z: 0, duration: 0))
         node.runAction(SCNAction.scale(by: 0.4, duration: 0))
         node.position = SCNVector3(xPos, yPos, zPos)
-        node.physicsBody = SCNPhysicsBody(type: .static, shape: nil)
+        node.physicsBody = SCNPhysicsBody(type: .static, shape: SCNPhysicsShape(geometry: SCNBox(width: 0.9, height: 1.8, length: 1.0, chamferRadius: 0.0)))
         node.physicsBody?.categoryBitMask = BodyType.sphere.rawValue
         node.physicsBody?.collisionBitMask = BodyType.sphere.rawValue
         node.physicsBody?.contactTestBitMask = BodyType.sphere.rawValue
@@ -646,14 +646,27 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate {
     
     func physicsWorld(_ world: SCNPhysicsWorld, didBegin contact: SCNPhysicsContact) {
         let contactMask = contact.nodeA.categoryBitMask | contact.nodeB.categoryBitMask
-        switch (contactMask) {
-        case BodyType.sphere.rawValue :
-            print("hit", count)
-            count += 1
-        default:
-            return
+        stopCar(car: getCarFromNode(node: contact.nodeA))
+        stopCar(car: getCarFromNode(node: contact.nodeB))
+        gameOverScreen()
+        count += 1
+    }
+    
+    func getCarFromNode(node: SCNNode) -> Car? {
+        for car in carArray {
+            if (node === car.getNode()) {
+                return car
+            }
+        }
+        return nil
+    }
+    
+    func stopCar(car: Car?) {
+        if let vehicle = car {
+            vehicle.changeIntersected()
         }
     }
+        
 }
 
 
