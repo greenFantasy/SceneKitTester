@@ -15,7 +15,9 @@
 		04A6A39022C5E52900D511F6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04A6A38E22C5E52900D511F6 /* LaunchScreen.storyboard */; };
 		04A6A39B22C5E52900D511F6 /* SceneKitTestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A6A39A22C5E52900D511F6 /* SceneKitTestTests.swift */; };
 		04A6A3A622C5E52900D511F6 /* SceneKitTestUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A6A3A522C5E52900D511F6 /* SceneKitTestUITests.swift */; };
-		CA0EEC81230A5D11005C9753 /* UpStreetLeftTurn.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0EEC80230A5D11005C9753 /* UpStreetLeftTurn.swift */; };
+		04BCB7552305C9DA00275648 /* UpStreetLeftTurn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BCB7542305C9D900275648 /* UpStreetLeftTurn.swift */; };
+		04BCB7562305C9DA00275648 /* UpStreetLeftTurn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BCB7542305C9D900275648 /* UpStreetLeftTurn.swift */; };
+		04BCB7572305C9DA00275648 /* UpStreetLeftTurn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BCB7542305C9D900275648 /* UpStreetLeftTurn.swift */; };
 		CAF2493D22ED116F00A2E6A1 /* TwoWayHorizontal.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAF2493322ED116D00A2E6A1 /* TwoWayHorizontal.swift */; };
 		CAF2493E22ED116F00A2E6A1 /* UpStreet.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAF2493422ED116E00A2E6A1 /* UpStreet.swift */; };
 		CAF2493F22ED116F00A2E6A1 /* LeftStreet.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAF2493522ED116E00A2E6A1 /* LeftStreet.swift */; };
@@ -60,7 +62,7 @@
 		04A6A3A122C5E52900D511F6 /* SceneKitTestUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SceneKitTestUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		04A6A3A522C5E52900D511F6 /* SceneKitTestUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneKitTestUITests.swift; sourceTree = "<group>"; };
 		04A6A3A722C5E52900D511F6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		CA0EEC80230A5D11005C9753 /* UpStreetLeftTurn.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpStreetLeftTurn.swift; sourceTree = "<group>"; };
+		04BCB7542305C9D900275648 /* UpStreetLeftTurn.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpStreetLeftTurn.swift; sourceTree = "<group>"; };
 		CAF2493322ED116D00A2E6A1 /* TwoWayHorizontal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwoWayHorizontal.swift; sourceTree = "<group>"; };
 		CAF2493422ED116E00A2E6A1 /* UpStreet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpStreet.swift; sourceTree = "<group>"; };
 		CAF2493522ED116E00A2E6A1 /* LeftStreet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftStreet.swift; sourceTree = "<group>"; };
@@ -126,7 +128,7 @@
 				04A6A38722C5E52700D511F6 /* GameViewController.swift */,
 				CAF2493622ED116E00A2E6A1 /* Car.swift */,
 				CAF2493A22ED116E00A2E6A1 /* DownStreet.swift */,
-				CA0EEC80230A5D11005C9753 /* UpStreetLeftTurn.swift */,
+				04BCB7542305C9D900275648 /* UpStreetLeftTurn.swift */,
 				CAF2493B22ED116F00A2E6A1 /* Intersection.swift */,
 				CAF2493522ED116E00A2E6A1 /* LeftStreet.swift */,
 				CAF2493722ED116E00A2E6A1 /* RightStreet.swift */,
@@ -305,7 +307,7 @@
 				04A6A38422C5E52700D511F6 /* AppDelegate.swift in Sources */,
 				CAF2494422ED116F00A2E6A1 /* DownStreet.swift in Sources */,
 				CAF2493D22ED116F00A2E6A1 /* TwoWayHorizontal.swift in Sources */,
-				CA0EEC81230A5D11005C9753 /* UpStreetLeftTurn.swift in Sources */,
+				04BCB7552305C9DA00275648 /* UpStreetLeftTurn.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -314,6 +316,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				04A6A39B22C5E52900D511F6 /* SceneKitTestTests.swift in Sources */,
+				04BCB7562305C9DA00275648 /* UpStreetLeftTurn.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -322,6 +325,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				04A6A3A622C5E52900D511F6 /* SceneKitTestUITests.swift in Sources */,
+				04BCB7572305C9DA00275648 /* UpStreetLeftTurn.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -481,14 +485,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 8U9M4FW69T;
+				DEVELOPMENT_TEAM = MNWC7GACYD;
 				INFOPLIST_FILE = SceneKitTest/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = RY.SceneKitTester;
+				PRODUCT_BUNDLE_IDENTIFIER = KRY.SceneKitTesters;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -500,14 +504,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 8U9M4FW69T;
+				DEVELOPMENT_TEAM = MNWC7GACYD;
 				INFOPLIST_FILE = SceneKitTest/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = RY.SceneKitTester;
+				PRODUCT_BUNDLE_IDENTIFIER = KRY.SceneKitTesters;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
