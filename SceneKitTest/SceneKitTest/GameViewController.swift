@@ -107,11 +107,6 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate {
         createCar(0, 20, leftStreet: v1.getDownStreet())
         createCar(-20, 0, leftStreet: h1.getRightStreet())
         createCar(0, -20, leftStreet: v2.getUpStreet())
-        createCar(0, -25, leftStreet: v2.getUpStreet())
-        createCar(0, -30, leftStreet: v2.getUpStreet())
-        createCar(0, -35, leftStreet: v2.getUpStreet())
-        createCar(0, -15, leftStreet: v2.getUpStreet())
-        createCar(0, -15, leftStreet: v2.getUpStreet())
         addStreetHorizontal()
         addStreetVertical()
         addBuildingsToScene(-1.5, 0, "blue", 0)
@@ -242,7 +237,7 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate {
         // let number = Int.random(in: -700 ... 300)
         var create = true
         for vehicle in carArray {
-            if (absoluteValue(xPos, vehicle.getXPos()) < 2 && absoluteValue(yPos, vehicle.getYPos()) < 2) {
+            if (absoluteValue(xPos, vehicle.getXPos()) < 2.0 && absoluteValue(yPos, vehicle.getYPos()) < 2.0) {
                 create = false
             }
         }
@@ -250,7 +245,6 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate {
             let car = Car(x: xPos, y: yPos, street: leftStreet)
             var color = ""
             let number = Int.random(in: 0 ..< 3)
-
             switch number {
             case 0:
                 color = "Red"
@@ -263,8 +257,6 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate {
             }
             let node = addCarToScene(xPos, yPos, 0, color)
             car.setNode(node: node)
-            car.getNode().physicsBody = SCNPhysicsBody(type: SCNPhysicsBodyType.kinematic, shape: SCNPhysicsShape(geometry: SCNBox(width: 3.0, height: 3.0, length: 3.0, chamferRadius: 0.0)))
-            car.getNode().categoryBitMask = 1
             carArray.append(car)
         }
     }
