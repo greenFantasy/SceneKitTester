@@ -78,7 +78,6 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate {
         ship.runAction(SCNAction.repeatForever(SCNAction.rotateBy(x: 0, y: 0, z: 0, duration: 1)))
         // run the update function repeatedly
         
-        
         // retrieve the SCNView
         let scnView = self.view as! SCNView
         scnView.delegate = self
