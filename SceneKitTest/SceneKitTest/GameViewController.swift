@@ -9,12 +9,26 @@
 import UIKit
 import QuartzCore
 import SceneKit
+import RealmSwift
+import SpriteKit
 
+<<<<<<< Updated upstream
 class GameViewController: UIViewController {
     
+=======
+enum BodyType: Int {
+    case sphere = 1
+    case wall = 2
+}
+
+class GameViewController: UIViewController, SCNPhysicsContactDelegate {
+    var user: User!
+    private var count = 0
+>>>>>>> Stashed changes
     private var counter = 0
     private var ship:SCNNode?
     private var scene:SCNScene = SCNScene(named: "art.scnassets/ship.scn")!
+    private var HUD:SKScene = SKScene(fileNamed: "HUD.sks")!
     private var carArray:[Car] = []
     private var twoWayHorizontalArray:[TwoWayHorizontal] = []
     private var twoWayVerticalArray:[TwoWayVertical] = []
@@ -26,6 +40,26 @@ class GameViewController: UIViewController {
         
         // create a new scene
         
+<<<<<<< Updated upstream
+=======
+        let realm = try! Realm()
+        
+        if realm.objects(User.self).count == 0 {
+            try! realm.write {
+                let newUser = User()
+                
+                newUser.highScore = 0
+                newUser.level = 1
+                
+                realm.add(newUser)
+                user = newUser
+            }
+        } else {
+            user = realm.objects(User.self)[0]
+        }
+        print(Realm.Configuration.defaultConfiguration.fileURL!)
+        
+>>>>>>> Stashed changes
         // create and add a camera to the scene
         let cameraNode = SCNNode()
         cameraNode.camera = SCNCamera()
@@ -65,7 +99,12 @@ class GameViewController: UIViewController {
         // retrieve the SCNView
         let scnView = self.view as! SCNView
         scnView.delegate = self
+<<<<<<< Updated upstream
         
+=======
+        scnView.scene?.physicsWorld.contactDelegate = self
+        scnView.overlaySKScene = HUD
+>>>>>>> Stashed changes
         // set the scene to the view
         scnView.scene = scene
         

@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -15,6 +15,26 @@
 		04A6A39022C5E52900D511F6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04A6A38E22C5E52900D511F6 /* LaunchScreen.storyboard */; };
 		04A6A39B22C5E52900D511F6 /* SceneKitTestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A6A39A22C5E52900D511F6 /* SceneKitTestTests.swift */; };
 		04A6A3A622C5E52900D511F6 /* SceneKitTestUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A6A3A522C5E52900D511F6 /* SceneKitTestUITests.swift */; };
+<<<<<<< Updated upstream
+=======
+		04BCB7552305C9DA00275648 /* UpStreetLeftTurn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BCB7542305C9D900275648 /* UpStreetLeftTurn.swift */; };
+		04BCB7562305C9DA00275648 /* UpStreetLeftTurn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BCB7542305C9D900275648 /* UpStreetLeftTurn.swift */; };
+		04BCB7572305C9DA00275648 /* UpStreetLeftTurn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BCB7542305C9D900275648 /* UpStreetLeftTurn.swift */; };
+		2D935EEB2E07C180B98A6358 /* Pods_SceneKitTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61B4B0FD765D1C1788EB5210 /* Pods_SceneKitTest.framework */; };
+		CA52C995230E5E8C00B36226 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA52C994230E5E8C00B36226 /* User.swift */; };
+		CA52C999230E621900B36226 /* HUD.sks in Resources */ = {isa = PBXBuildFile; fileRef = CA52C998230E621900B36226 /* HUD.sks */; };
+		CA52C99B230E628A00B36226 /* HUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA52C99A230E628A00B36226 /* HUD.swift */; };
+		CAF2493D22ED116F00A2E6A1 /* TwoWayHorizontal.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAF2493322ED116D00A2E6A1 /* TwoWayHorizontal.swift */; };
+		CAF2493E22ED116F00A2E6A1 /* UpStreet.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAF2493422ED116E00A2E6A1 /* UpStreet.swift */; };
+		CAF2493F22ED116F00A2E6A1 /* LeftStreet.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAF2493522ED116E00A2E6A1 /* LeftStreet.swift */; };
+		CAF2494022ED116F00A2E6A1 /* Car.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAF2493622ED116E00A2E6A1 /* Car.swift */; };
+		CAF2494122ED116F00A2E6A1 /* RightStreet.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAF2493722ED116E00A2E6A1 /* RightStreet.swift */; };
+		CAF2494222ED116F00A2E6A1 /* TrafficLight.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAF2493822ED116E00A2E6A1 /* TrafficLight.swift */; };
+		CAF2494322ED116F00A2E6A1 /* TwoWayVertical.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAF2493922ED116E00A2E6A1 /* TwoWayVertical.swift */; };
+		CAF2494422ED116F00A2E6A1 /* DownStreet.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAF2493A22ED116E00A2E6A1 /* DownStreet.swift */; };
+		CAF2494522ED116F00A2E6A1 /* Intersection.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAF2493B22ED116F00A2E6A1 /* Intersection.swift */; };
+		CAF2494622ED116F00A2E6A1 /* StreetProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAF2493C22ED116F00A2E6A1 /* StreetProtocol.swift */; };
+>>>>>>> Stashed changes
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +69,26 @@
 		04A6A3A122C5E52900D511F6 /* SceneKitTestUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SceneKitTestUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		04A6A3A522C5E52900D511F6 /* SceneKitTestUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneKitTestUITests.swift; sourceTree = "<group>"; };
 		04A6A3A722C5E52900D511F6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+<<<<<<< Updated upstream
+=======
+		04BCB7542305C9D900275648 /* UpStreetLeftTurn.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpStreetLeftTurn.swift; sourceTree = "<group>"; };
+		30769A60CC7C91F4CAB22983 /* Pods-SceneKitTest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SceneKitTest.release.xcconfig"; path = "Target Support Files/Pods-SceneKitTest/Pods-SceneKitTest.release.xcconfig"; sourceTree = "<group>"; };
+		61B4B0FD765D1C1788EB5210 /* Pods_SceneKitTest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SceneKitTest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CA52C994230E5E8C00B36226 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		CA52C998230E621900B36226 /* HUD.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = HUD.sks; sourceTree = "<group>"; };
+		CA52C99A230E628A00B36226 /* HUD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HUD.swift; sourceTree = "<group>"; };
+		CAF2493322ED116D00A2E6A1 /* TwoWayHorizontal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwoWayHorizontal.swift; sourceTree = "<group>"; };
+		CAF2493422ED116E00A2E6A1 /* UpStreet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpStreet.swift; sourceTree = "<group>"; };
+		CAF2493522ED116E00A2E6A1 /* LeftStreet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftStreet.swift; sourceTree = "<group>"; };
+		CAF2493622ED116E00A2E6A1 /* Car.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Car.swift; sourceTree = "<group>"; };
+		CAF2493722ED116E00A2E6A1 /* RightStreet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RightStreet.swift; sourceTree = "<group>"; };
+		CAF2493822ED116E00A2E6A1 /* TrafficLight.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrafficLight.swift; sourceTree = "<group>"; };
+		CAF2493922ED116E00A2E6A1 /* TwoWayVertical.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwoWayVertical.swift; sourceTree = "<group>"; };
+		CAF2493A22ED116E00A2E6A1 /* DownStreet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownStreet.swift; sourceTree = "<group>"; };
+		CAF2493B22ED116F00A2E6A1 /* Intersection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Intersection.swift; sourceTree = "<group>"; };
+		CAF2493C22ED116F00A2E6A1 /* StreetProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StreetProtocol.swift; sourceTree = "<group>"; };
+		D5749E79348D1832331E360E /* Pods-SceneKitTest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SceneKitTest.debug.xcconfig"; path = "Target Support Files/Pods-SceneKitTest/Pods-SceneKitTest.debug.xcconfig"; sourceTree = "<group>"; };
+>>>>>>> Stashed changes
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +96,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2D935EEB2E07C180B98A6358 /* Pods_SceneKitTest.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,6 +124,8 @@
 				04A6A39922C5E52900D511F6 /* SceneKitTestTests */,
 				04A6A3A422C5E52900D511F6 /* SceneKitTestUITests */,
 				04A6A38122C5E52700D511F6 /* Products */,
+				8D0DABA31CF10E1F1C62671C /* Pods */,
+				D3D7F8A3EE2762AC40691C42 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -104,8 +147,11 @@
 				04A6A38722C5E52700D511F6 /* GameViewController.swift */,
 				04A6A38922C5E52700D511F6 /* Main.storyboard */,
 				04A6A38C22C5E52900D511F6 /* Assets.xcassets */,
+				CA52C994230E5E8C00B36226 /* User.swift */,
 				04A6A38E22C5E52900D511F6 /* LaunchScreen.storyboard */,
 				04A6A39122C5E52900D511F6 /* Info.plist */,
+				CA52C998230E621900B36226 /* HUD.sks */,
+				CA52C99A230E628A00B36226 /* HUD.swift */,
 			);
 			path = SceneKitTest;
 			sourceTree = "<group>";
@@ -128,6 +174,23 @@
 			path = SceneKitTestUITests;
 			sourceTree = "<group>";
 		};
+		8D0DABA31CF10E1F1C62671C /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				D5749E79348D1832331E360E /* Pods-SceneKitTest.debug.xcconfig */,
+				30769A60CC7C91F4CAB22983 /* Pods-SceneKitTest.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		D3D7F8A3EE2762AC40691C42 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				61B4B0FD765D1C1788EB5210 /* Pods_SceneKitTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -135,9 +198,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 04A6A3AA22C5E52900D511F6 /* Build configuration list for PBXNativeTarget "SceneKitTest" */;
 			buildPhases = (
+				577487D39F314192E1A34336 /* [CP] Check Pods Manifest.lock */,
 				04A6A37C22C5E52700D511F6 /* Sources */,
 				04A6A37D22C5E52700D511F6 /* Frameworks */,
 				04A6A37E22C5E52700D511F6 /* Resources */,
+				B57A2FDE598E27D41CBFC888 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -234,6 +299,7 @@
 			files = (
 				04A6A38622C5E52700D511F6 /* art.scnassets in Resources */,
 				04A6A39022C5E52900D511F6 /* LaunchScreen.storyboard in Resources */,
+				CA52C999230E621900B36226 /* HUD.sks in Resources */,
 				04A6A38D22C5E52900D511F6 /* Assets.xcassets in Resources */,
 				04A6A38B22C5E52700D511F6 /* Main.storyboard in Resources */,
 			);
@@ -255,12 +321,67 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		577487D39F314192E1A34336 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SceneKitTest-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B57A2FDE598E27D41CBFC888 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SceneKitTest/Pods-SceneKitTest-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SceneKitTest/Pods-SceneKitTest-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SceneKitTest/Pods-SceneKitTest-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		04A6A37C22C5E52700D511F6 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				04A6A38822C5E52700D511F6 /* GameViewController.swift in Sources */,
+<<<<<<< Updated upstream
+=======
+				CAF2494522ED116F00A2E6A1 /* Intersection.swift in Sources */,
+				CAF2493F22ED116F00A2E6A1 /* LeftStreet.swift in Sources */,
+				CAF2494022ED116F00A2E6A1 /* Car.swift in Sources */,
+				CAF2494622ED116F00A2E6A1 /* StreetProtocol.swift in Sources */,
+				CAF2494322ED116F00A2E6A1 /* TwoWayVertical.swift in Sources */,
+				CA52C99B230E628A00B36226 /* HUD.swift in Sources */,
+				CA52C995230E5E8C00B36226 /* User.swift in Sources */,
+				CAF2493E22ED116F00A2E6A1 /* UpStreet.swift in Sources */,
+				CAF2494222ED116F00A2E6A1 /* TrafficLight.swift in Sources */,
+				CAF2494122ED116F00A2E6A1 /* RightStreet.swift in Sources */,
+>>>>>>> Stashed changes
 				04A6A38422C5E52700D511F6 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -434,15 +555,24 @@
 		};
 		04A6A3AB22C5E52900D511F6 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D5749E79348D1832331E360E /* Pods-SceneKitTest.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+<<<<<<< Updated upstream
+=======
+				DEVELOPMENT_TEAM = 8U9M4FW69T;
+>>>>>>> Stashed changes
 				INFOPLIST_FILE = SceneKitTest/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+<<<<<<< Updated upstream
 				PRODUCT_BUNDLE_IDENTIFIER = RY.SceneKitTest;
+=======
+				PRODUCT_BUNDLE_IDENTIFIER = KRY.SceneKitTestersss;
+>>>>>>> Stashed changes
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -451,15 +581,24 @@
 		};
 		04A6A3AC22C5E52900D511F6 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 30769A60CC7C91F4CAB22983 /* Pods-SceneKitTest.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+<<<<<<< Updated upstream
+=======
+				DEVELOPMENT_TEAM = 8U9M4FW69T;
+>>>>>>> Stashed changes
 				INFOPLIST_FILE = SceneKitTest/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+<<<<<<< Updated upstream
 				PRODUCT_BUNDLE_IDENTIFIER = RY.SceneKitTest;
+=======
+				PRODUCT_BUNDLE_IDENTIFIER = KRY.SceneKitTestersss;
+>>>>>>> Stashed changes
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
