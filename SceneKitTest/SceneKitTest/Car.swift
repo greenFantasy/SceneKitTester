@@ -28,7 +28,6 @@ class Car: SKShapeNode {  // Car implements SKShapeNode class
     private var completedTurnsArray:[Bool] = []
     private var currentIntersection: Intersection?
     private var currentTurn:TurnProtocol?
-    private var counter = 0
     private var currentSpeed = 0.0
     
     //private let finalDestination
@@ -100,7 +99,7 @@ class Car: SKShapeNode {  // Car implements SKShapeNode class
     }
     
     func rotateNodeLeft(){
-        sceneNode.runAction(SCNAction.rotateBy(x: 0, y: 0, z: .pi/2, duration: 1.0))
+        sceneNode.runAction(SCNAction.rotateBy(x: 0, y: 0, z: .pi/2, duration: 1.1))
     }
 
     func rotateNodeRight(){
@@ -173,7 +172,6 @@ class Car: SKShapeNode {  // Car implements SKShapeNode class
         }
         if (currentTurn != nil) {
             currentTurn!.turnCar()
-            counter += 1
             if (getDirection() % 2 == 0) {
                 currentSpeed = -0.1
             } else {
@@ -457,8 +455,8 @@ class Car: SKShapeNode {  // Car implements SKShapeNode class
     }
     
     func isAtIntersection2(intersection: Intersection) -> Bool {
-        if (Double(intersection.getXFrame()[0]) < getXPos() && getXPos() < Double(intersection.getXFrame()[1])) {
-            if (Double(intersection.getYFrame()[0]) < getYPos() && getYPos() < Double(intersection.getYFrame()[1])) {
+        if (Double(intersection.getXFrame()[0]) <= getXPos() && getXPos() <= Double(intersection.getXFrame()[1])) {
+            if (Double(intersection.getYFrame()[0]) <= getYPos() && getYPos() <= Double(intersection.getYFrame()[1])) {
                 return true
             }
         }
