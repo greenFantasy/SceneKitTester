@@ -27,7 +27,7 @@ class Car: SKShapeNode {  // Car implements SKShapeNode class
     private var turnArray:[Int] = [] // when 0, it's going to continue straight, when 1, the car will turn right, when 2, the car will turn left
     private var completedTurnsArray:[Bool] = []
     private var currentIntersection: Intersection?
-    private var currentTurn:UpStreetLeftTurn?
+    private var currentTurn:TurnProtocol?
     private var counter = 0
     private var currentSpeed = 0.0
     
@@ -67,7 +67,7 @@ class Car: SKShapeNode {  // Car implements SKShapeNode class
         }
     }
     
-    func getCurrentTurn() -> UpStreetLeftTurn? {
+    func getCurrentTurn() -> TurnProtocol? {
         return currentTurn
     }
     
@@ -316,6 +316,7 @@ class Car: SKShapeNode {  // Car implements SKShapeNode class
             fixPosOnStreet()
             rotateNodeRight()
             completedTurnsArray[intersectionArray.count - 1] = true
+            currentTurn = RightTurn(car: self)
             if (getDirection() % 2 == 0) {
                 currentSpeed = -0.1
             } else {

@@ -241,6 +241,7 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate {
                 create = false
             }
         }
+        
         if create {
             let car = Car(x: xPos, y: yPos, street: leftStreet)
             var color = ""

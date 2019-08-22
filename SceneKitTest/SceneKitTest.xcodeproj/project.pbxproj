@@ -15,6 +15,12 @@
 		04A6A39022C5E52900D511F6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04A6A38E22C5E52900D511F6 /* LaunchScreen.storyboard */; };
 		04A6A39B22C5E52900D511F6 /* SceneKitTestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A6A39A22C5E52900D511F6 /* SceneKitTestTests.swift */; };
 		04A6A3A622C5E52900D511F6 /* SceneKitTestUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A6A3A522C5E52900D511F6 /* SceneKitTestUITests.swift */; };
+		04B7B05E230E6076006337DB /* RightTurn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B7B05D230E6076006337DB /* RightTurn.swift */; };
+		04B7B05F230E6076006337DB /* RightTurn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B7B05D230E6076006337DB /* RightTurn.swift */; };
+		04B7B060230E6076006337DB /* RightTurn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B7B05D230E6076006337DB /* RightTurn.swift */; };
+		04B7B062230E6318006337DB /* TurnProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B7B061230E6318006337DB /* TurnProtocol.swift */; };
+		04B7B063230E6318006337DB /* TurnProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B7B061230E6318006337DB /* TurnProtocol.swift */; };
+		04B7B064230E6318006337DB /* TurnProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B7B061230E6318006337DB /* TurnProtocol.swift */; };
 		04BCB7552305C9DA00275648 /* UpStreetLeftTurn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BCB7542305C9D900275648 /* UpStreetLeftTurn.swift */; };
 		04BCB7562305C9DA00275648 /* UpStreetLeftTurn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BCB7542305C9D900275648 /* UpStreetLeftTurn.swift */; };
 		04BCB7572305C9DA00275648 /* UpStreetLeftTurn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BCB7542305C9D900275648 /* UpStreetLeftTurn.swift */; };
@@ -62,6 +68,8 @@
 		04A6A3A122C5E52900D511F6 /* SceneKitTestUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SceneKitTestUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		04A6A3A522C5E52900D511F6 /* SceneKitTestUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneKitTestUITests.swift; sourceTree = "<group>"; };
 		04A6A3A722C5E52900D511F6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		04B7B05D230E6076006337DB /* RightTurn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RightTurn.swift; sourceTree = "<group>"; };
+		04B7B061230E6318006337DB /* TurnProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TurnProtocol.swift; sourceTree = "<group>"; };
 		04BCB7542305C9D900275648 /* UpStreetLeftTurn.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpStreetLeftTurn.swift; sourceTree = "<group>"; };
 		CAF2493322ED116D00A2E6A1 /* TwoWayHorizontal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwoWayHorizontal.swift; sourceTree = "<group>"; };
 		CAF2493422ED116E00A2E6A1 /* UpStreet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpStreet.swift; sourceTree = "<group>"; };
@@ -129,6 +137,8 @@
 				CAF2493622ED116E00A2E6A1 /* Car.swift */,
 				CAF2493A22ED116E00A2E6A1 /* DownStreet.swift */,
 				04BCB7542305C9D900275648 /* UpStreetLeftTurn.swift */,
+				04B7B061230E6318006337DB /* TurnProtocol.swift */,
+				04B7B05D230E6076006337DB /* RightTurn.swift */,
 				CAF2493B22ED116F00A2E6A1 /* Intersection.swift */,
 				CAF2493522ED116E00A2E6A1 /* LeftStreet.swift */,
 				CAF2493722ED116E00A2E6A1 /* RightStreet.swift */,
@@ -304,10 +314,12 @@
 				CAF2493E22ED116F00A2E6A1 /* UpStreet.swift in Sources */,
 				CAF2494222ED116F00A2E6A1 /* TrafficLight.swift in Sources */,
 				CAF2494122ED116F00A2E6A1 /* RightStreet.swift in Sources */,
+				04B7B05E230E6076006337DB /* RightTurn.swift in Sources */,
 				04A6A38422C5E52700D511F6 /* AppDelegate.swift in Sources */,
 				CAF2494422ED116F00A2E6A1 /* DownStreet.swift in Sources */,
 				CAF2493D22ED116F00A2E6A1 /* TwoWayHorizontal.swift in Sources */,
 				04BCB7552305C9DA00275648 /* UpStreetLeftTurn.swift in Sources */,
+				04B7B062230E6318006337DB /* TurnProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -315,7 +327,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04B7B063230E6318006337DB /* TurnProtocol.swift in Sources */,
 				04A6A39B22C5E52900D511F6 /* SceneKitTestTests.swift in Sources */,
+				04B7B05F230E6076006337DB /* RightTurn.swift in Sources */,
 				04BCB7562305C9DA00275648 /* UpStreetLeftTurn.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -324,7 +338,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04B7B064230E6318006337DB /* TurnProtocol.swift in Sources */,
 				04A6A3A622C5E52900D511F6 /* SceneKitTestUITests.swift in Sources */,
+				04B7B060230E6076006337DB /* RightTurn.swift in Sources */,
 				04BCB7572305C9DA00275648 /* UpStreetLeftTurn.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
