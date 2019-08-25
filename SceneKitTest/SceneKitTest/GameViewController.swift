@@ -29,6 +29,7 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate {
     private var lightArray:[TrafficLight] = []
     private var intersectionArray:[Intersection] = []
     private var carsThrough = 0
+    private var scale = 0.35
 
 
     override func viewDidLoad() {
@@ -208,9 +209,9 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate {
         let newScene = SCNScene(named: "art.scnassets/Car" + color + ".scn")
         let node = newScene!.rootNode.childNode(withName: "Car", recursively: true)!
         node.runAction(SCNAction.rotateBy(x: .pi/2, y: 0, z: 0, duration: 0))
-        node.runAction(SCNAction.scale(by: 0.4, duration: 0))
+        node.runAction(SCNAction.scale(by: CGFloat(scale), duration: 0))
         node.position = SCNVector3(xPos, yPos, zPos)
-        node.physicsBody = SCNPhysicsBody(type: .static, shape: SCNPhysicsShape(geometry: SCNBox(width: 0.9, height: 1.8, length: 1.0, chamferRadius: 0.0)))
+        node.physicsBody = SCNPhysicsBody(type: .static, shape: SCNPhysicsShape(geometry: SCNBox(width: CGFloat(0.9 * scale/0.4), height: CGFloat(1.8 * scale/0.4), length: CGFloat(1.0 * scale/0.4), chamferRadius: 0.0)))
         node.physicsBody?.categoryBitMask = BodyType.sphere.rawValue
         node.physicsBody?.collisionBitMask = BodyType.sphere.rawValue
         node.physicsBody?.contactTestBitMask = BodyType.sphere.rawValue

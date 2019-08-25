@@ -117,6 +117,7 @@ class Car: SKShapeNode {  // Car implements SKShapeNode class
     
     func adjustSpeed(_ xVel: Double, _ yVel: Double) -> [Double] {
         // prevents the car from immediately going to topSpeed after changing direction
+        // this method ensures the car accelerates slowly rather than immediately going at its max speed (after a turn or being stopped by a light for example)
         var tempSpeed = 0.0
         var x = xVel
         var y = yVel
@@ -164,18 +165,20 @@ class Car: SKShapeNode {  // Car implements SKShapeNode class
             }
             xPos += speedArray[0]
             yPos += speedArray[1]
+            
+            if (currentTurn != nil) {
+                // this code continues the turn if the car is in the middle of one, though the xpos and ypos are updated as if the car is moving straight, the currentTurn.turnCar() method overrides these straight movements by setting the xpos and ypos to be along the curved path of the turn
+                currentTurn!.turnCar()
+                if (getDirection() % 2 == 0) {
+                    currentSpeed = -0.1
+                } else {
+                    currentSpeed = 0.1
+                }
+            }
         } else {
-            let number = Int.random(in: 0 ... 30)
+            let number = Int.random(in: 0 ... 100)
             if (number == 10) {
                 rotateNodeLeft()
-            }
-        }
-        if (currentTurn != nil) {
-            currentTurn!.turnCar()
-            if (getDirection() % 2 == 0) {
-                currentSpeed = -0.1
-            } else {
-                currentSpeed = 0.1
             }
         }
         updateShapeNodePos()
