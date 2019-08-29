@@ -88,7 +88,7 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate {
         scnView.scene = scene
 
         // allows the user to manipulate the camera
-        scnView.allowsCameraControl = false
+        scnView.allowsCameraControl = true
 
         // show statistics such as fps and timing information
         scnView.showsStatistics = true
