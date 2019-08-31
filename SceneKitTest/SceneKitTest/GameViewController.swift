@@ -29,6 +29,7 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate {
     private var lightArray:[TrafficLight] = []
     private var intersectionArray:[Intersection] = []
     private var carsThrough = 0
+ 
 
 
     override func viewDidLoad() {
@@ -667,6 +668,8 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate {
             vehicle.changeIntersected()
         }
     }
+    
+
 
 }
 
