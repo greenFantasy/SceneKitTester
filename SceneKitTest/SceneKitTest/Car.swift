@@ -274,32 +274,6 @@ class Car: SKShapeNode {  // Car implements SKShapeNode class
         intersected = true
     }
     
-//    func isAtIntersection (intersection: Intersection) -> Bool {
-//        if (intersection.isCarAtIntersection(self)) {
-//            currentIntersection = intersection
-//            return true
-//        } else {
-//            return false
-//        }
-//    }
-    
-//    func turn(streetToTurnOn: StreetProtocol, intersection: Intersection) {
-//        let number = Int.random(in: 0 ... 2)
-//        var used = false
-//        for usedIntersection in intersectionArray {
-//            if (usedIntersection === intersection) {
-//                used = true
-//            }
-//        }
-//        if (number == 0 && !used) {
-//            currentStreet.removeCar(car: self)
-//            currentStreet = streetToTurnOn
-//            streetToTurnOn.addCar(car: self)
-//            intersectionArray.append(intersection)
-//            fixPosOnStreet()
-//        }
-//    }
-    
     func makeRightTurn(intersection: Intersection) {
         if completedTurnsArray[intersectionArray.count - 1] == false {
             //currentStreet.removeCar(car: self)
@@ -313,6 +287,15 @@ class Car: SKShapeNode {  // Car implements SKShapeNode class
             } else if direction == 3 {
                 currentStreet = intersection.getHorizontalTwoWay().getRightStreet()
             }
+            if (!turnAreaFree()) {
+                currentStreet = previousStreet
+                return
+            }
+            
+            if !turnAreaFree() {
+                print("is this runnning?")
+            }
+            
             currentStreet.addCar(car: self)
             fixPosOnStreet()
             rotateNodeRight()
@@ -326,19 +309,23 @@ class Car: SKShapeNode {  // Car implements SKShapeNode class
         }
     }
     
+    func turnAreaFree() -> Bool {
+        return true
+    }
+    
     func getCurrentIntersection() -> Intersection? {
         return currentIntersection
     }
     
     func makeLeftTurn(intersection: Intersection) {
-        let frontTurnMargin = 1.0
+        let frontTurnMargin = 0.75
         let backTurnMargin = 5.0
         if !isLastTurnCompleted() {
             let oppStreet = intersection.getOppositeStreet(street: currentStreet)
             let direction = currentStreet.getDirection()
             if direction == 0 {
                 if let closeCar = oppStreet.isStreetFree(startingPos: intersection.getPosition()[0] + frontTurnMargin, endingPos: intersection.getPosition()[0] - backTurnMargin) {
-                    if closeCar.getLastTurn() == 2 && !closeCar.isLastTurnCompleted() {
+                    if ((closeCar.getLastTurn() == 2 && !closeCar.isLastTurnCompleted()) || closeCar.getNextTurn() == 2) {
                         leftTurner(direction: direction, intersection: intersection)
                     }
                 } else {
@@ -346,7 +333,7 @@ class Car: SKShapeNode {  // Car implements SKShapeNode class
                 }
             } else if (direction == 1) {
                 if let closeCar = oppStreet.isStreetFree(startingPos: intersection.getPosition()[0] - frontTurnMargin, endingPos: intersection.getPosition()[0] + backTurnMargin) {
-                    if closeCar.getLastTurn() == 2 && !closeCar.isLastTurnCompleted() {
+                    if ((closeCar.getLastTurn() == 2 && !closeCar.isLastTurnCompleted()) || closeCar.getNextTurn() == 2) {
                         leftTurner(direction: direction, intersection: intersection)
                     }
                 } else {
@@ -354,7 +341,7 @@ class Car: SKShapeNode {  // Car implements SKShapeNode class
                 }
             } else if direction == 2 {
                 if let closeCar = oppStreet.isStreetFree(startingPos: intersection.getPosition()[1] + frontTurnMargin, endingPos: intersection.getPosition()[1] - backTurnMargin) {
-                    if closeCar.getLastTurn() == 2 && !closeCar.isLastTurnCompleted() {
+                    if ((closeCar.getLastTurn() == 2 && !closeCar.isLastTurnCompleted()) || closeCar.getNextTurn() == 2) {
                         leftTurner(direction: direction, intersection: intersection)
                     }
                 } else {
@@ -362,7 +349,7 @@ class Car: SKShapeNode {  // Car implements SKShapeNode class
                 }
             } else if direction == 3 {
                 if let closeCar = oppStreet.isStreetFree(startingPos: intersection.getPosition()[1] - frontTurnMargin, endingPos: intersection.getPosition()[1] + backTurnMargin) {
-                    if closeCar.getLastTurn() == 2 && !closeCar.isLastTurnCompleted() {
+                    if ((closeCar.getLastTurn() == 2 && !closeCar.isLastTurnCompleted()) || closeCar.getNextTurn() == 2) {
                         leftTurner(direction: direction, intersection: intersection)
                     }
                 } else {
@@ -373,6 +360,11 @@ class Car: SKShapeNode {  // Car implements SKShapeNode class
     }
     
     func updateTurnArray() {
+        // this method generates a random array of turns for each car, that the car will follow in order
+        // 0 means the car will go straight
+        // 1 means the car will go right
+        // 2 means the car will go left
+        // it is called in the initializer so that the turns are generated, if a car is going straight at an intersection, then it marks those turns are completed in the completedTurnsArray, otherwise false
 //        if (currentStreet.getDirection() == 0) {
 //            for _ in 0...20 {
 //                var number = Int.random(in: -1 ... 10)
@@ -416,7 +408,17 @@ class Car: SKShapeNode {  // Car implements SKShapeNode class
         }
     }
     
+    func getNextTurn() -> Int {
+        if (intersectionArray.count == 0) {
+            return turnArray[0]
+        } else {
+            return turnArray[intersectionArray.count]
+        }
+    }
+    
     func isLastTurnCompleted() -> Bool {
+        // this method will return true in all scenarios, unless the car is waiting to complete a left or right turn after already entering the intersection
+        // once a car begins turning, this method returns true (the method name can be decieving)
         if (intersectionArray.count == 0) {
             return completedTurnsArray[0]
         } else {
@@ -426,6 +428,7 @@ class Car: SKShapeNode {  // Car implements SKShapeNode class
     
     func addToIntersectionArray(intersection: Intersection) -> Bool {
         // returns true if this is the first time the car has approached this intersection, false otherwise
+        // this way if a car keeps on turning (due to the random turn selection), then it cannot stay on the screen forever
         var contains = false
         for intersect in intersectionArray {
             if intersect === intersection {

@@ -182,7 +182,7 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate {
     }
 
     func addBoxToScene(_ xPos: Double, _ yPos: Double, _ zPos:Double) -> SCNNode {
-        let geometry = SCNBox(width: 1.0, height: 1.0, length: 1.0, chamferRadius: 0)
+        let geometry = SCNBox(width: 1.2, height: 1.2, length: 1.2, chamferRadius: 0)
         let node = SCNNode(geometry: geometry)
         node.position = SCNVector3(xPos, yPos, zPos)
         scene.rootNode.addChildNode(node)
@@ -283,10 +283,10 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate {
                 let intersection = Intersection(horizontal: horizontalTwoWay, vertical: verticalTwoWay)
                 intersectionArray.append(intersection)
                 addImageOfIntersection(coordinates: intersection.getPosition())
-                addLineToScene(intersection.getXFrame()[0], intersection.getPosition()[1], 0, height: 4.0)
-                addLineToScene(intersection.getXFrame()[1], intersection.getPosition()[1], 0, height: 4.0)
-                addLineToScene(intersection.getPosition()[0], intersection.getYFrame()[0], 0, width: 4.0)
-                addLineToScene(intersection.getPosition()[0], intersection.getYFrame()[1], 0, width: 4.0)
+//                addLineToScene(intersection.getXFrame()[0], intersection.getPosition()[1], 0, height: 4.0)
+//                addLineToScene(intersection.getXFrame()[1], intersection.getPosition()[1], 0, height: 4.0)
+//                addLineToScene(intersection.getPosition()[0], intersection.getYFrame()[0], 0, width: 4.0)
+//                addLineToScene(intersection.getPosition()[0], intersection.getYFrame()[1], 0, width: 4.0)
                 for trafficLight in intersection.getAllLights() {
                     createLight(trafficLight: trafficLight)
                 }

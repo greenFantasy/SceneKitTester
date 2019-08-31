@@ -28,7 +28,7 @@ class Intersection {
     private var lightDown:TrafficLight
     private var lightUp:TrafficLight
     private var allFourLights:[TrafficLight] = []
-    private var lightDistance = 1.5 // just used for placing lights graphically, does not have any logical effect in the code
+    private var lightDistance = 2.0 // just used for placing lights graphically, does not have any logical effect in the code
     
     init (horizontal: TwoWayHorizontal, vertical: TwoWayVertical) {
         xCenter = vertical.getMidline()
