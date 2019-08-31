@@ -90,10 +90,17 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate {
         
         // ADDING LABELS
         
-        var label = UILabel(frame: CGRect(x: 100, y: 100, width: 200, height: 200))
+        var label = UILabel(frame: CGRect(x: 100, y: 100, width: 200, height: 50))
         label.text = "Traffic Sense"
         
         scnView.addSubview(label)
+        
+        var button = UIButton(frame: CGRect(x: 0, y: 0, width: 200, height: 50))
+        button.setTitle("BUTTON", for: .normal)
+        
+        button.addTarget(self, action: #selector(self.buttonClicked), for: .touchUpInside)
+        
+        scnView.addSubview(button)
         
         // END ADDING LABELS
 
@@ -383,6 +390,10 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate {
                 }
             }
         }
+    }
+    
+    @objc func buttonClicked() {
+        print("Button Clicked")
     }
 
     override var shouldAutorotate: Bool {
