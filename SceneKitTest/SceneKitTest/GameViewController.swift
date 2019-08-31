@@ -39,16 +39,16 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         let realm = try! Realm()
-        
+
         if realm.objects(User.self).count == 0 {
             try! realm.write {
                 let newUser = User()
-                
+
                 newUser.highScore = 0
                 newUser.level = 1
-                
+
                 realm.add(newUser)
                 user = newUser
             }
@@ -56,16 +56,16 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate {
             user = realm.objects(User.self)[0]
         }
         print(Realm.Configuration.defaultConfiguration.fileURL!)
-        
+
         timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(onTimerFires), userInfo: nil, repeats: true)
-        
+
         timer?.tolerance = 0.15 // Makes the timer more efficient
-        
+
         RunLoop.current.add(timer!, forMode: RunLoop.Mode.common) // Helps UI stay responsive even with timer
-        
+
         /*  The timer above is now initialized using a few key properties: the timeInterval is the interval in which the timer will update, target is where the timer will be applied, selector specifies a function to run when the timer updates based on the time interval, userInfo can supply information to the selector function, and repeats allows the timer to run continuously until invalidated.
          */
-        
+
         // create a new scene
 
         // create and add a camera to the scene
@@ -104,7 +104,8 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate {
         scene.rootNode.addChildNode(ambientLightNode)
 
         // retrieve the ship node
-        let ship = scene.rootNode.childNode(withName: "ship", recursively: true)!
+        let ship = scene.rootNode.childNode(withName: "Audi R8", recursively: true)!
+
         self.ship = ship
 
         // animate the 3d object
@@ -118,12 +119,21 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate {
         scnView.scene?.physicsWorld.contactDelegate = self
         // set the scene to the view
         scnView.scene = scene
-        
+
         // ADDING LABELS
-        scoreLabel.text = "Traffic Sense"
-        
-        scnView.addSubview(scoreLabel)
-        
+
+        var label = UILabel(frame: CGRect(x: 100, y: 100, width: 200, height: 50))
+        label.text = "Traffic Sense"
+
+        scnView.addSubview(label)
+
+        var button = UIButton(frame: CGRect(x: 0, y: 0, width: 200, height: 50))
+        button.setTitle("BUTTON", for: .normal)
+
+        button.addTarget(self, action: #selector(self.buttonClicked), for: .touchUpInside)
+
+        scnView.addSubview(button)
+
         // END ADDING LABELS
 
         // allows the user to manipulate the camera
@@ -205,14 +215,14 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate {
     @objc func onTimerFires() {
         timeLeft -= 1
         scoreLabel.text = "\(timeLeft) sec left  Score: " + String(carsThrough)
-        
+
         if timeLeft <= 0 {
             timer?.invalidate()
             timer = nil
             gameOverScreen()
         }
     }
-    
+
     func addBoxToScene() -> SCNNode {
         let geometry = SCNBox(width: 1.0, height: 1.0, length: 1.0, chamferRadius: 0)
         let node = SCNNode(geometry: geometry)
@@ -291,7 +301,7 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate {
                 create = false
             }
         }
-        
+
         if create {
             let car = Car(x: xPos, y: yPos, street: leftStreet)
             var color = ""
@@ -423,6 +433,10 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate {
                 }
             }
         }
+    }
+
+    @objc func buttonClicked() {
+        print("Button Clicked")
     }
 
     override var shouldAutorotate: Bool {
@@ -668,7 +682,7 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate {
 
 //        let labels = getLabelsInView(view: endView)
 //        for label in labels {
-    
+
         if isHighScore {
             scoreLabel.text = "Game over!  Score: " + String(carsThrough) + "! Highscore"
         } else {
