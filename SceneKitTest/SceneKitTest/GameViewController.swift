@@ -87,6 +87,15 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate {
         scnView.scene?.physicsWorld.contactDelegate = self
         // set the scene to the view
         scnView.scene = scene
+        
+        // ADDING LABELS
+        
+        var label = UILabel(frame: CGRect(x: 100, y: 100, width: 200, height: 200))
+        label.text = "Traffic Sense"
+        
+        scnView.addSubview(label)
+        
+        // END ADDING LABELS
 
         // allows the user to manipulate the camera
         scnView.allowsCameraControl = false
