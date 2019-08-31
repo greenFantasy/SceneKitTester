@@ -9,6 +9,7 @@
 import UIKit
 import QuartzCore
 import SceneKit
+import RealmSwift
 
 enum BodyType: Int {
     case sphere = 1
@@ -16,7 +17,11 @@ enum BodyType: Int {
 }
 
 class GameViewController: UIViewController, SCNPhysicsContactDelegate {
-
+    private var scoreLabel = UILabel(frame: CGRect(x: 100, y: 100, width: 1000, height: 200))
+    private var user: User!
+    private var score = 0  // Score variable
+    private var timer:Timer? // Creates optional of type Timer
+    private var timeLeft = 60  //Variable used in timer for setting amount of time left
     private var count = 0
     private var counter = 0
     private var ship:SCNNode?
@@ -34,7 +39,33 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        let realm = try! Realm()
+        
+        if realm.objects(User.self).count == 0 {
+            try! realm.write {
+                let newUser = User()
+                
+                newUser.highScore = 0
+                newUser.level = 1
+                
+                realm.add(newUser)
+                user = newUser
+            }
+        } else {
+            user = realm.objects(User.self)[0]
+        }
+        print(Realm.Configuration.defaultConfiguration.fileURL!)
+        
+        timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(onTimerFires), userInfo: nil, repeats: true)
+        
+        timer?.tolerance = 0.15 // Makes the timer more efficient
+        
+        RunLoop.current.add(timer!, forMode: RunLoop.Mode.common) // Helps UI stay responsive even with timer
+        
+        /*  The timer above is now initialized using a few key properties: the timeInterval is the interval in which the timer will update, target is where the timer will be applied, selector specifies a function to run when the timer updates based on the time interval, userInfo can supply information to the selector function, and repeats allows the timer to run continuously until invalidated.
+         */
+        
         // create a new scene
 
         // create and add a camera to the scene
@@ -89,11 +120,9 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate {
         scnView.scene = scene
         
         // ADDING LABELS
+        scoreLabel.text = "Traffic Sense"
         
-        var label = UILabel(frame: CGRect(x: 100, y: 100, width: 200, height: 200))
-        label.text = "Traffic Sense"
-        
-        scnView.addSubview(label)
+        scnView.addSubview(scoreLabel)
         
         // END ADDING LABELS
 
@@ -173,6 +202,17 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate {
 //        addLineToScene(0, 14, 1, width: 15)
     }
 
+    @objc func onTimerFires() {
+        timeLeft -= 1
+        scoreLabel.text = "\(timeLeft) sec left  Score: " + String(carsThrough)
+        
+        if timeLeft <= 0 {
+            timer?.invalidate()
+            timer = nil
+            gameOverScreen()
+        }
+    }
+    
     func addBoxToScene() -> SCNNode {
         let geometry = SCNBox(width: 1.0, height: 1.0, length: 1.0, chamferRadius: 0)
         let node = SCNNode(geometry: geometry)
@@ -610,16 +650,13 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate {
     }
 
     func gameOverScreen() {
-//        timer?.invalidate()
-//        timer = nil
-//
-//        gameOverLabel.position = CGPoint(x: frame.midX, y: frame.midY)
-//        gameOverLabel.zPosition = 150
-//
-//        endView.isHidden = false
-//
-//        var isHighScore = false
-//
+        timer?.invalidate()
+        timer = nil
+
+       // endView.isHidden = false
+
+        var isHighScore = false
+
 //        if user.highScore < score {
 //            isHighScore = true
 //            let realm = try! Realm()
@@ -628,17 +665,17 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate {
 //                user.highScore = score
 //            }
 //        }
-//
+
 //        let labels = getLabelsInView(view: endView)
 //        for label in labels {
-//            score = carsThrough
-//            if isHighScore {
-//                label.text = "Game over!  Score: " + String(score) + "! Highscore"
-//            } else {
-//                label.text = "Game over!  Score: " + String(score)
-//            }
-//            label.frame.origin = CGPoint(x: frame.midX, y: frame.midY)
-//        }
+    
+        if isHighScore {
+            scoreLabel.text = "Game over!  Score: " + String(carsThrough) + "! Highscore"
+        } else {
+            scoreLabel.text = "Game over!  Score: " + String(carsThrough)
+        }
+        //label.frame.origin = CGPoint(x: frame.midX, y: frame.midY)
+       // }
         print("Collision")
     }
 
