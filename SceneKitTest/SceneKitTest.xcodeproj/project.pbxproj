@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -15,6 +15,29 @@
 		04A6A39022C5E52900D511F6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04A6A38E22C5E52900D511F6 /* LaunchScreen.storyboard */; };
 		04A6A39B22C5E52900D511F6 /* SceneKitTestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A6A39A22C5E52900D511F6 /* SceneKitTestTests.swift */; };
 		04A6A3A622C5E52900D511F6 /* SceneKitTestUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A6A3A522C5E52900D511F6 /* SceneKitTestUITests.swift */; };
+		04B7B05E230E6076006337DB /* RightTurn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B7B05D230E6076006337DB /* RightTurn.swift */; };
+		04B7B05F230E6076006337DB /* RightTurn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B7B05D230E6076006337DB /* RightTurn.swift */; };
+		04B7B060230E6076006337DB /* RightTurn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B7B05D230E6076006337DB /* RightTurn.swift */; };
+		04B7B062230E6318006337DB /* TurnProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B7B061230E6318006337DB /* TurnProtocol.swift */; };
+		04B7B063230E6318006337DB /* TurnProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B7B061230E6318006337DB /* TurnProtocol.swift */; };
+		04B7B064230E6318006337DB /* TurnProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B7B061230E6318006337DB /* TurnProtocol.swift */; };
+		04BCB7552305C9DA00275648 /* UpStreetLeftTurn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BCB7542305C9D900275648 /* UpStreetLeftTurn.swift */; };
+		04BCB7562305C9DA00275648 /* UpStreetLeftTurn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BCB7542305C9D900275648 /* UpStreetLeftTurn.swift */; };
+		04BCB7572305C9DA00275648 /* UpStreetLeftTurn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BCB7542305C9D900275648 /* UpStreetLeftTurn.swift */; };
+		69D8353DF34A99E2080732A9 /* Pods_SceneKitTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2240ADB83645A6E9DF6B859E /* Pods_SceneKitTest.framework */; };
+		CAAFA411231252AF00A8FAED /* TurnProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAAFA40E231252AF00A8FAED /* TurnProtocol.swift */; };
+		CAAFA412231252AF00A8FAED /* RightTurn.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAAFA40F231252AF00A8FAED /* RightTurn.swift */; };
+		CAAFA413231252AF00A8FAED /* UpStreetLeftTurn.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAAFA410231252AF00A8FAED /* UpStreetLeftTurn.swift */; };
+		CAF2493D22ED116F00A2E6A1 /* TwoWayHorizontal.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAF2493322ED116D00A2E6A1 /* TwoWayHorizontal.swift */; };
+		CAF2493E22ED116F00A2E6A1 /* UpStreet.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAF2493422ED116E00A2E6A1 /* UpStreet.swift */; };
+		CAF2493F22ED116F00A2E6A1 /* LeftStreet.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAF2493522ED116E00A2E6A1 /* LeftStreet.swift */; };
+		CAF2494022ED116F00A2E6A1 /* Car.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAF2493622ED116E00A2E6A1 /* Car.swift */; };
+		CAF2494122ED116F00A2E6A1 /* RightStreet.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAF2493722ED116E00A2E6A1 /* RightStreet.swift */; };
+		CAF2494222ED116F00A2E6A1 /* TrafficLight.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAF2493822ED116E00A2E6A1 /* TrafficLight.swift */; };
+		CAF2494322ED116F00A2E6A1 /* TwoWayVertical.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAF2493922ED116E00A2E6A1 /* TwoWayVertical.swift */; };
+		CAF2494422ED116F00A2E6A1 /* DownStreet.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAF2493A22ED116E00A2E6A1 /* DownStreet.swift */; };
+		CAF2494522ED116F00A2E6A1 /* Intersection.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAF2493B22ED116F00A2E6A1 /* Intersection.swift */; };
+		CAF2494622ED116F00A2E6A1 /* StreetProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAF2493C22ED116F00A2E6A1 /* StreetProtocol.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +72,25 @@
 		04A6A3A122C5E52900D511F6 /* SceneKitTestUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SceneKitTestUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		04A6A3A522C5E52900D511F6 /* SceneKitTestUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneKitTestUITests.swift; sourceTree = "<group>"; };
 		04A6A3A722C5E52900D511F6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		04B7B05D230E6076006337DB /* RightTurn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RightTurn.swift; sourceTree = "<group>"; };
+		04B7B061230E6318006337DB /* TurnProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TurnProtocol.swift; sourceTree = "<group>"; };
+		04BCB7542305C9D900275648 /* UpStreetLeftTurn.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpStreetLeftTurn.swift; sourceTree = "<group>"; };
+		2240ADB83645A6E9DF6B859E /* Pods_SceneKitTest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SceneKitTest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		504AFCEDD6F2948B7D32B6D5 /* Pods-SceneKitTest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SceneKitTest.debug.xcconfig"; path = "Target Support Files/Pods-SceneKitTest/Pods-SceneKitTest.debug.xcconfig"; sourceTree = "<group>"; };
+		817B0045FF815A0E0F70467F /* Pods-SceneKitTest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SceneKitTest.release.xcconfig"; path = "Target Support Files/Pods-SceneKitTest/Pods-SceneKitTest.release.xcconfig"; sourceTree = "<group>"; };
+		CAAFA40E231252AF00A8FAED /* TurnProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TurnProtocol.swift; sourceTree = "<group>"; };
+		CAAFA40F231252AF00A8FAED /* RightTurn.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RightTurn.swift; sourceTree = "<group>"; };
+		CAAFA410231252AF00A8FAED /* UpStreetLeftTurn.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpStreetLeftTurn.swift; sourceTree = "<group>"; };
+		CAF2493322ED116D00A2E6A1 /* TwoWayHorizontal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwoWayHorizontal.swift; sourceTree = "<group>"; };
+		CAF2493422ED116E00A2E6A1 /* UpStreet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpStreet.swift; sourceTree = "<group>"; };
+		CAF2493522ED116E00A2E6A1 /* LeftStreet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftStreet.swift; sourceTree = "<group>"; };
+		CAF2493622ED116E00A2E6A1 /* Car.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Car.swift; sourceTree = "<group>"; };
+		CAF2493722ED116E00A2E6A1 /* RightStreet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RightStreet.swift; sourceTree = "<group>"; };
+		CAF2493822ED116E00A2E6A1 /* TrafficLight.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrafficLight.swift; sourceTree = "<group>"; };
+		CAF2493922ED116E00A2E6A1 /* TwoWayVertical.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwoWayVertical.swift; sourceTree = "<group>"; };
+		CAF2493A22ED116E00A2E6A1 /* DownStreet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownStreet.swift; sourceTree = "<group>"; };
+		CAF2493B22ED116F00A2E6A1 /* Intersection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Intersection.swift; sourceTree = "<group>"; };
+		CAF2493C22ED116F00A2E6A1 /* StreetProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StreetProtocol.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +98,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				69D8353DF34A99E2080732A9 /* Pods_SceneKitTest.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,6 +126,8 @@
 				04A6A39922C5E52900D511F6 /* SceneKitTestTests */,
 				04A6A3A422C5E52900D511F6 /* SceneKitTestUITests */,
 				04A6A38122C5E52700D511F6 /* Products */,
+				85420E1E210B9FAB429A4775 /* Pods */,
+				407288B1599B44BBEA00BBAB /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -102,6 +147,22 @@
 				04A6A38322C5E52700D511F6 /* AppDelegate.swift */,
 				04A6A38522C5E52700D511F6 /* art.scnassets */,
 				04A6A38722C5E52700D511F6 /* GameViewController.swift */,
+				CAF2493622ED116E00A2E6A1 /* Car.swift */,
+				CAF2493A22ED116E00A2E6A1 /* DownStreet.swift */,
+				04BCB7542305C9D900275648 /* UpStreetLeftTurn.swift */,
+				CAAFA40F231252AF00A8FAED /* RightTurn.swift */,
+				04B7B061230E6318006337DB /* TurnProtocol.swift */,
+				04B7B05D230E6076006337DB /* RightTurn.swift */,
+				CAF2493B22ED116F00A2E6A1 /* Intersection.swift */,
+				CAF2493522ED116E00A2E6A1 /* LeftStreet.swift */,
+				CAF2493722ED116E00A2E6A1 /* RightStreet.swift */,
+				CAF2493C22ED116F00A2E6A1 /* StreetProtocol.swift */,
+				CAF2493822ED116E00A2E6A1 /* TrafficLight.swift */,
+				CAF2493322ED116D00A2E6A1 /* TwoWayHorizontal.swift */,
+				CAAFA40E231252AF00A8FAED /* TurnProtocol.swift */,
+				CAAFA410231252AF00A8FAED /* UpStreetLeftTurn.swift */,
+				CAF2493922ED116E00A2E6A1 /* TwoWayVertical.swift */,
+				CAF2493422ED116E00A2E6A1 /* UpStreet.swift */,
 				04A6A38922C5E52700D511F6 /* Main.storyboard */,
 				04A6A38C22C5E52900D511F6 /* Assets.xcassets */,
 				04A6A38E22C5E52900D511F6 /* LaunchScreen.storyboard */,
@@ -128,6 +189,23 @@
 			path = SceneKitTestUITests;
 			sourceTree = "<group>";
 		};
+		407288B1599B44BBEA00BBAB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2240ADB83645A6E9DF6B859E /* Pods_SceneKitTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		85420E1E210B9FAB429A4775 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				504AFCEDD6F2948B7D32B6D5 /* Pods-SceneKitTest.debug.xcconfig */,
+				817B0045FF815A0E0F70467F /* Pods-SceneKitTest.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -135,9 +213,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 04A6A3AA22C5E52900D511F6 /* Build configuration list for PBXNativeTarget "SceneKitTest" */;
 			buildPhases = (
+				25161E066F07F2F040C5EC02 /* [CP] Check Pods Manifest.lock */,
 				04A6A37C22C5E52700D511F6 /* Sources */,
 				04A6A37D22C5E52700D511F6 /* Frameworks */,
 				04A6A37E22C5E52700D511F6 /* Resources */,
+				6F1F499AC8387EEF4CED0FA6 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -255,13 +335,71 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		25161E066F07F2F040C5EC02 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SceneKitTest-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6F1F499AC8387EEF4CED0FA6 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SceneKitTest/Pods-SceneKitTest-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SceneKitTest/Pods-SceneKitTest-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SceneKitTest/Pods-SceneKitTest-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		04A6A37C22C5E52700D511F6 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				04A6A38822C5E52700D511F6 /* GameViewController.swift in Sources */,
+				CAF2494522ED116F00A2E6A1 /* Intersection.swift in Sources */,
+				CAF2493F22ED116F00A2E6A1 /* LeftStreet.swift in Sources */,
+				CAAFA413231252AF00A8FAED /* UpStreetLeftTurn.swift in Sources */,
+				CAF2494022ED116F00A2E6A1 /* Car.swift in Sources */,
+				CAF2494622ED116F00A2E6A1 /* StreetProtocol.swift in Sources */,
+				CAF2494322ED116F00A2E6A1 /* TwoWayVertical.swift in Sources */,
+				CAF2493E22ED116F00A2E6A1 /* UpStreet.swift in Sources */,
+				CAF2494222ED116F00A2E6A1 /* TrafficLight.swift in Sources */,
+				CAAFA411231252AF00A8FAED /* TurnProtocol.swift in Sources */,
+				CAF2494122ED116F00A2E6A1 /* RightStreet.swift in Sources */,
+				04B7B05E230E6076006337DB /* RightTurn.swift in Sources */,
 				04A6A38422C5E52700D511F6 /* AppDelegate.swift in Sources */,
+				CAF2494422ED116F00A2E6A1 /* DownStreet.swift in Sources */,
+				CAF2493D22ED116F00A2E6A1 /* TwoWayHorizontal.swift in Sources */,
+				04BCB7552305C9DA00275648 /* UpStreetLeftTurn.swift in Sources */,
+				CAAFA412231252AF00A8FAED /* RightTurn.swift in Sources */,
+				04B7B062230E6318006337DB /* TurnProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -269,7 +407,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04B7B063230E6318006337DB /* TurnProtocol.swift in Sources */,
 				04A6A39B22C5E52900D511F6 /* SceneKitTestTests.swift in Sources */,
+				04B7B05F230E6076006337DB /* RightTurn.swift in Sources */,
+				04BCB7562305C9DA00275648 /* UpStreetLeftTurn.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -277,7 +418,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04B7B064230E6318006337DB /* TurnProtocol.swift in Sources */,
 				04A6A3A622C5E52900D511F6 /* SceneKitTestUITests.swift in Sources */,
+				04B7B060230E6076006337DB /* RightTurn.swift in Sources */,
+				04BCB7572305C9DA00275648 /* UpStreetLeftTurn.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -434,15 +578,18 @@
 		};
 		04A6A3AB22C5E52900D511F6 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 504AFCEDD6F2948B7D32B6D5 /* Pods-SceneKitTest.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 8U9M4FW69T;
 				INFOPLIST_FILE = SceneKitTest/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = RY.SceneKitTest;
+				PRODUCT_BUNDLE_IDENTIFIER = KRY.SceneKitTestersss;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -451,15 +598,18 @@
 		};
 		04A6A3AC22C5E52900D511F6 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 817B0045FF815A0E0F70467F /* Pods-SceneKitTest.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 8U9M4FW69T;
 				INFOPLIST_FILE = SceneKitTest/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = RY.SceneKitTest;
+				PRODUCT_BUNDLE_IDENTIFIER = KRY.SceneKitTestersss;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
