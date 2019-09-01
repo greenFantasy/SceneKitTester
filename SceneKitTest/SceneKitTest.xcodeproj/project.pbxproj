@@ -25,6 +25,7 @@
 		04BCB7562305C9DA00275648 /* UpStreetLeftTurn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BCB7542305C9D900275648 /* UpStreetLeftTurn.swift */; };
 		04BCB7572305C9DA00275648 /* UpStreetLeftTurn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BCB7542305C9D900275648 /* UpStreetLeftTurn.swift */; };
 		69D8353DF34A99E2080732A9 /* Pods_SceneKitTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2240ADB83645A6E9DF6B859E /* Pods_SceneKitTest.framework */; };
+		CA124625231ACF3A00A77F9A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA124624231ACF3A00A77F9A /* User.swift */; };
 		CAAFA411231252AF00A8FAED /* TurnProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAAFA40E231252AF00A8FAED /* TurnProtocol.swift */; };
 		CAAFA412231252AF00A8FAED /* RightTurn.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAAFA40F231252AF00A8FAED /* RightTurn.swift */; };
 		CAAFA413231252AF00A8FAED /* UpStreetLeftTurn.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAAFA410231252AF00A8FAED /* UpStreetLeftTurn.swift */; };
@@ -78,6 +79,7 @@
 		2240ADB83645A6E9DF6B859E /* Pods_SceneKitTest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SceneKitTest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		504AFCEDD6F2948B7D32B6D5 /* Pods-SceneKitTest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SceneKitTest.debug.xcconfig"; path = "Target Support Files/Pods-SceneKitTest/Pods-SceneKitTest.debug.xcconfig"; sourceTree = "<group>"; };
 		817B0045FF815A0E0F70467F /* Pods-SceneKitTest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SceneKitTest.release.xcconfig"; path = "Target Support Files/Pods-SceneKitTest/Pods-SceneKitTest.release.xcconfig"; sourceTree = "<group>"; };
+		CA124624231ACF3A00A77F9A /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = User.swift; path = ../../../../../Desktop/User.swift; sourceTree = "<group>"; };
 		CAAFA40E231252AF00A8FAED /* TurnProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TurnProtocol.swift; sourceTree = "<group>"; };
 		CAAFA40F231252AF00A8FAED /* RightTurn.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RightTurn.swift; sourceTree = "<group>"; };
 		CAAFA410231252AF00A8FAED /* UpStreetLeftTurn.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpStreetLeftTurn.swift; sourceTree = "<group>"; };
@@ -158,6 +160,7 @@
 				CAF2493722ED116E00A2E6A1 /* RightStreet.swift */,
 				CAF2493C22ED116F00A2E6A1 /* StreetProtocol.swift */,
 				CAF2493822ED116E00A2E6A1 /* TrafficLight.swift */,
+				CA124624231ACF3A00A77F9A /* User.swift */,
 				CAF2493322ED116D00A2E6A1 /* TwoWayHorizontal.swift */,
 				CAAFA40E231252AF00A8FAED /* TurnProtocol.swift */,
 				CAAFA410231252AF00A8FAED /* UpStreetLeftTurn.swift */,
@@ -400,6 +403,7 @@
 				04BCB7552305C9DA00275648 /* UpStreetLeftTurn.swift in Sources */,
 				CAAFA412231252AF00A8FAED /* RightTurn.swift in Sources */,
 				04B7B062230E6318006337DB /* TurnProtocol.swift in Sources */,
+				CA124625231ACF3A00A77F9A /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
