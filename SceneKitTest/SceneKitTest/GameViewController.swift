@@ -52,26 +52,28 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        
-        if realm.objects(User.self).count == 0 {
-            try! realm.write {
-                let newUser = User()
-                
-                newUser.highScore = 0
-                newUser.level = 1
-                
-                realm.add(newUser)
-                user = newUser
-            }
-        } else {
-            user = realm.objects(User.self)[0]
-        }
+//        if realm.objects(User.self).count == 0 {
+//            try! realm.write {
+//                let newUser = User()
+//
+//                newUser.highScore = 0
+//                newUser.level = 1
+//
+//                realm.add(newUser)
+//                user = newUser
+//            }
+//        } else {
+//            user = realm.objects(User.self)[0]
+//        }
         print(Realm.Configuration.defaultConfiguration.fileURL!)
         
         timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(onTimerFires), userInfo: nil, repeats: true)
         
         timer?.tolerance = 0.15 // Makes the timer more efficient
+        
+        gameView.frame = self.view.frame
+        pauseView.frame = self.view.frame
+        gameOverView.frame = self.view.frame // this adjusts the frame to the screen size of the device
         
         RunLoop.current.add(timer!, forMode: RunLoop.Mode.common) // Helps UI stay responsive even with timer
         
