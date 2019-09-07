@@ -24,8 +24,10 @@
 		04BCB7552305C9DA00275648 /* UpStreetLeftTurn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BCB7542305C9D900275648 /* UpStreetLeftTurn.swift */; };
 		04BCB7562305C9DA00275648 /* UpStreetLeftTurn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BCB7542305C9D900275648 /* UpStreetLeftTurn.swift */; };
 		04BCB7572305C9DA00275648 /* UpStreetLeftTurn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BCB7542305C9D900275648 /* UpStreetLeftTurn.swift */; };
+		04E54B27231C7210005909AA /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E54B26231C7210005909AA /* User.swift */; };
+		04E54B28231C7210005909AA /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E54B26231C7210005909AA /* User.swift */; };
+		04E54B29231C7210005909AA /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E54B26231C7210005909AA /* User.swift */; };
 		69D8353DF34A99E2080732A9 /* Pods_SceneKitTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2240ADB83645A6E9DF6B859E /* Pods_SceneKitTest.framework */; };
-		CA124625231ACF3A00A77F9A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA124624231ACF3A00A77F9A /* User.swift */; };
 		CAAFA411231252AF00A8FAED /* TurnProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAAFA40E231252AF00A8FAED /* TurnProtocol.swift */; };
 		CAAFA412231252AF00A8FAED /* RightTurn.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAAFA40F231252AF00A8FAED /* RightTurn.swift */; };
 		CAAFA413231252AF00A8FAED /* UpStreetLeftTurn.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAAFA410231252AF00A8FAED /* UpStreetLeftTurn.swift */; };
@@ -76,10 +78,10 @@
 		04B7B05D230E6076006337DB /* RightTurn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RightTurn.swift; sourceTree = "<group>"; };
 		04B7B061230E6318006337DB /* TurnProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TurnProtocol.swift; sourceTree = "<group>"; };
 		04BCB7542305C9D900275648 /* UpStreetLeftTurn.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpStreetLeftTurn.swift; sourceTree = "<group>"; };
+		04E54B26231C7210005909AA /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		2240ADB83645A6E9DF6B859E /* Pods_SceneKitTest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SceneKitTest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		504AFCEDD6F2948B7D32B6D5 /* Pods-SceneKitTest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SceneKitTest.debug.xcconfig"; path = "Target Support Files/Pods-SceneKitTest/Pods-SceneKitTest.debug.xcconfig"; sourceTree = "<group>"; };
 		817B0045FF815A0E0F70467F /* Pods-SceneKitTest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SceneKitTest.release.xcconfig"; path = "Target Support Files/Pods-SceneKitTest/Pods-SceneKitTest.release.xcconfig"; sourceTree = "<group>"; };
-		CA124624231ACF3A00A77F9A /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = User.swift; path = ../../../../../Desktop/User.swift; sourceTree = "<group>"; };
 		CAAFA40E231252AF00A8FAED /* TurnProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TurnProtocol.swift; sourceTree = "<group>"; };
 		CAAFA40F231252AF00A8FAED /* RightTurn.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RightTurn.swift; sourceTree = "<group>"; };
 		CAAFA410231252AF00A8FAED /* UpStreetLeftTurn.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpStreetLeftTurn.swift; sourceTree = "<group>"; };
@@ -156,11 +158,11 @@
 				04B7B061230E6318006337DB /* TurnProtocol.swift */,
 				04B7B05D230E6076006337DB /* RightTurn.swift */,
 				CAF2493B22ED116F00A2E6A1 /* Intersection.swift */,
+				04E54B26231C7210005909AA /* User.swift */,
 				CAF2493522ED116E00A2E6A1 /* LeftStreet.swift */,
 				CAF2493722ED116E00A2E6A1 /* RightStreet.swift */,
 				CAF2493C22ED116F00A2E6A1 /* StreetProtocol.swift */,
 				CAF2493822ED116E00A2E6A1 /* TrafficLight.swift */,
-				CA124624231ACF3A00A77F9A /* User.swift */,
 				CAF2493322ED116D00A2E6A1 /* TwoWayHorizontal.swift */,
 				CAAFA40E231252AF00A8FAED /* TurnProtocol.swift */,
 				CAAFA410231252AF00A8FAED /* UpStreetLeftTurn.swift */,
@@ -403,7 +405,7 @@
 				04BCB7552305C9DA00275648 /* UpStreetLeftTurn.swift in Sources */,
 				CAAFA412231252AF00A8FAED /* RightTurn.swift in Sources */,
 				04B7B062230E6318006337DB /* TurnProtocol.swift in Sources */,
-				CA124625231ACF3A00A77F9A /* User.swift in Sources */,
+				04E54B27231C7210005909AA /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -414,6 +416,7 @@
 				04B7B063230E6318006337DB /* TurnProtocol.swift in Sources */,
 				04A6A39B22C5E52900D511F6 /* SceneKitTestTests.swift in Sources */,
 				04B7B05F230E6076006337DB /* RightTurn.swift in Sources */,
+				04E54B28231C7210005909AA /* User.swift in Sources */,
 				04BCB7562305C9DA00275648 /* UpStreetLeftTurn.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -425,6 +428,7 @@
 				04B7B064230E6318006337DB /* TurnProtocol.swift in Sources */,
 				04A6A3A622C5E52900D511F6 /* SceneKitTestUITests.swift in Sources */,
 				04B7B060230E6076006337DB /* RightTurn.swift in Sources */,
+				04E54B29231C7210005909AA /* User.swift in Sources */,
 				04BCB7572305C9DA00275648 /* UpStreetLeftTurn.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
