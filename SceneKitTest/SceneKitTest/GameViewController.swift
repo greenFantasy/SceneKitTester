@@ -18,7 +18,7 @@ enum BodyType: Int {
 
 class GameViewController: UIViewController, SCNPhysicsContactDelegate {
     
-    private var scoreLabel = UILabel(frame: CGRect(x: 100, y: 100, width: 1000, height: 200))
+    private var scoreLabel = UILabel()
     private var user: User!
     private var score = 0  // Score variable
     private var timer:Timer? // Creates optional of type Timer
@@ -39,6 +39,23 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        
+//        scoreLabel = UILabel()
+//
+//
+//
+//        scoreLabel.textAlignment = .center
+//        scoreLabel.font = UIFont.systemFont(ofSize: 14)
+//        scoreLabel.frame = CGRect(x:0,y:0,width:scoreLabel.intrinsicContentSize.width,height:scoreLabel.intrinsicContentSize.height)
+//
+//        scoreLabel = UILabel(frame: CGRect(x: self.view.center.x, y: self.view.center.y, width: 2000, height: 400))
+//
+//        scoreLabel.textAlignment = .center
+        
+        
+        
         
         let realm = try! Realm()
         
@@ -120,7 +137,7 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate {
         scnView.scene = scene
         
         // ADDING LABELS
-        scoreLabel.text = "Traffic Sense"
+        
         
         
         
@@ -136,7 +153,12 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate {
 
         // configure the view
         scnView.backgroundColor = UIColor.black
-
+        
+        scoreLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 300, height: 300))
+        scoreLabel.center = CGPoint(x: scnView.frame.midX, y: scnView.frame.midY)
+        scoreLabel.textAlignment = NSTextAlignment.center
+        scnView.addSubview(scoreLabel)
+        
         // add a tap gesture recognizer
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
         scnView.addGestureRecognizer(tapGesture)
@@ -214,6 +236,7 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate {
             gameOverScreen()
         }
     }
+    
     
     func addBoxToScene() -> SCNNode {
         let geometry = SCNBox(width: 1.0, height: 1.0, length: 1.0, chamferRadius: 0)
