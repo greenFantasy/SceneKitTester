@@ -19,6 +19,17 @@ enum BodyType: Int {
 class GameViewController: UIViewController, SCNPhysicsContactDelegate {
     
     private var scoreLabel = UILabel()
+    
+    private var pauseButton = UIButton(frame: CGRect(x: 668/2 - 50, y: 20, width: 100, height: 20))
+    
+    private var pauseView = UIView(frame: CGRect(x: 0, y: 0, width: 668, height: 378))
+    private var resumeButton = UIButton(frame: CGRect(x: 275, y: 40, width: 100, height: 20))
+    
+    private var gameView = SCNView(frame: CGRect(x: 0, y: 0, width: 668, height: 378))
+    
+    private var gameOverView = SCNView(frame: CGRect(x: 0, y: 0, width: 668, height: 378))
+    private var restartButton = UIButton(frame: CGRect(x: 275, y: 40, width: 100, height: 20))
+    
     private var user: User!
     private var score = 0  // Score variable
     private var timer:Timer? // Creates optional of type Timer
@@ -36,28 +47,12 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate {
     private var intersectionArray:[Intersection] = []
     private var carsThrough = 0
     private var scale = 0.35
+    private var isOver = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         
-        
-//        scoreLabel = UILabel()
-//
-//
-//
-//        scoreLabel.textAlignment = .center
-//        scoreLabel.font = UIFont.systemFont(ofSize: 14)
-//        scoreLabel.frame = CGRect(x:0,y:0,width:scoreLabel.intrinsicContentSize.width,height:scoreLabel.intrinsicContentSize.height)
-//
-//        scoreLabel = UILabel(frame: CGRect(x: self.view.center.x, y: self.view.center.y, width: 2000, height: 400))
-//
-//        scoreLabel.textAlignment = .center
-        
-        
-        
-        
-        let realm = try! Realm()
         
         if realm.objects(User.self).count == 0 {
             try! realm.write {
@@ -105,7 +100,6 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate {
         planeNode.position = SCNVector3(0, 0, -0.1)
         scene.rootNode.addChildNode(planeNode)
 
-
         // create and add a light to the scene
         let lightNode = SCNNode()
         lightNode.light = SCNLight()
@@ -129,8 +123,10 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate {
         ship.runAction(SCNAction.repeatForever(SCNAction.rotateBy(x: 0, y: 0, z: 0, duration: 1)))
         // run the update function repeatedly
 
+        self.view.addSubview(gameView)
+        
         // retrieve the SCNView
-        let scnView = self.view as! SCNView
+        let scnView = gameView
         scnView.delegate = self
         scnView.scene?.physicsWorld.contactDelegate = self
         // set the scene to the view
@@ -142,6 +138,28 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate {
         
         
         scnView.addSubview(scoreLabel)
+        
+        pauseButton.setTitle("Pause", for: .normal)
+
+        scnView.addSubview(pauseButton)
+        pauseButton.addTarget(self, action: #selector(pauseGame), for: .touchUpInside)
+        
+        pauseView.isHidden = true
+        self.view.addSubview(pauseView)
+        
+        gameOverView.isHidden = true
+        self.view.addSubview(gameOverView)
+        
+        resumeButton.setTitle("Resume", for: .normal)
+        resumeButton.addTarget(self, action: #selector(resumeGame), for: .touchUpInside)
+        pauseView.addSubview(resumeButton)
+        
+        pauseView.backgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.6)
+        gameOverView.backgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.6)
+        
+        restartButton.setTitle("Restart", for: .normal)
+        restartButton.addTarget(self, action: #selector(restartGame), for: .touchUpInside)
+        gameOverView.addSubview(restartButton)
         
         // END ADDING LABELS
 
@@ -427,7 +445,7 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate {
     @objc
     func handleTap(_ gestureRecognize: UIGestureRecognizer) {
         // retrieve the SCNView
-        let scnView = self.view as! SCNView
+        let scnView = gameView
         // check what nodes are tapped
         let p = gestureRecognize.location(in: scnView)
         let hitResults = scnView.hitTest(p, options: [:])
@@ -448,6 +466,38 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate {
                 }
             }
         }
+    }
+    
+    @objc func pauseGame() {
+        print("Pause Method is running")
+        
+        timer?.invalidate()
+        
+        scene.isPaused = true
+        
+        pauseView.isHidden = false
+        
+        gameView.isUserInteractionEnabled = false
+    }
+    
+    @objc func resumeGame() {
+        print("Resume Method is running")
+        
+        pauseView.isHidden = true
+        
+        timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(onTimerFires), userInfo: nil, repeats: true)
+        
+        timer?.tolerance = 0.15 // Makes the timer more efficient
+        
+        scene.isPaused = false
+        
+        gameView.isUserInteractionEnabled = true
+    }
+    
+    @objc func restartGame() {
+        print("Restart Method is running")
+        
+        gameOverView.isHidden = false // this line is just for temporary app testing
     }
 
     override var shouldAutorotate: Bool {
@@ -677,11 +727,16 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate {
     func gameOverScreen() {
         timer?.invalidate()
         timer = nil
-
+        
        // endView.isHidden = false
 
         var isHighScore = false
-
+        
+        DispatchQueue.main.async {
+            self.gameOverView.isHidden = false
+        }
+        
+        //gameOverView.isHidden = false
 //        if user.highScore < score {
 //            isHighScore = true
 //            let realm = try! Realm()
