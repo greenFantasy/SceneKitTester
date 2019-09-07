@@ -17,11 +17,12 @@ enum BodyType: Int {
 }
 
 class GameViewController: UIViewController, SCNPhysicsContactDelegate {
+    
     private var scoreLabel = UILabel(frame: CGRect(x: 100, y: 100, width: 1000, height: 200))
     private var user: User!
     private var score = 0  // Score variable
     private var timer:Timer? // Creates optional of type Timer
-    private var timeLeft = 60  //Variable used in timer for setting amount of time left
+    private var timeLeft = 60  // Variable used in timer for setting amount of time left
     private var count = 0
     private var counter = 0
     private var ship:SCNNode?
@@ -35,8 +36,7 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate {
     private var intersectionArray:[Intersection] = []
     private var carsThrough = 0
     private var scale = 0.35
-
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -122,12 +122,14 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate {
         // ADDING LABELS
         scoreLabel.text = "Traffic Sense"
         
+        
+        
         scnView.addSubview(scoreLabel)
         
         // END ADDING LABELS
 
         // allows the user to manipulate the camera
-        scnView.allowsCameraControl = false
+        scnView.allowsCameraControl = true
 
         // show statistics such as fps and timing information
         scnView.showsStatistics = true
@@ -492,8 +494,8 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate {
     }
 
     func speedModifier(distance:Double) -> Double {
-        let minDistance = 2.25
-        let highSpeedDistance = 4.5
+        let minDistance = 2.0
+        let highSpeedDistance = 4.25
         if distance <= minDistance {
             return 0
         } else if (distance <= highSpeedDistance) {
@@ -578,8 +580,8 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate {
     }
 
     func isVehicleCloseToLight(vehicle: Car, light: TrafficLight) -> Bool {
-        let width = light.getIntersection().getWidth() + 4.5 * light.getRadius()
-        let height = light.getIntersection().getHeight() + 4.5 * light.getRadius()
+        let width = light.getIntersection().getWidth() + 5.0 * light.getRadius()
+        let height = light.getIntersection().getHeight() + 5.0 * light.getRadius()
         if vehicle.getDirection() == 0 {
             return vehicle.getXPos() > light.getXPos() + width && vehicle.getXPos() < light.getXPos() + width + 0.5
         } else if vehicle.getDirection() == 2 {
@@ -669,11 +671,11 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate {
 //        let labels = getLabelsInView(view: endView)
 //        for label in labels {
     
-        if isHighScore {
-            scoreLabel.text = "Game over!  Score: " + String(carsThrough) + "! Highscore"
-        } else {
-            scoreLabel.text = "Game over!  Score: " + String(carsThrough)
-        }
+//        if isHighScore {
+//            scoreLabel.text = "Game over!  Score: " + String(carsThrough) + "! Highscore"
+//        } else {
+//            scoreLabel.text = "Game over!  Score: " + String(carsThrough)
+//        }
         //label.frame.origin = CGPoint(x: frame.midX, y: frame.midY)
        // }
         print("Collision")

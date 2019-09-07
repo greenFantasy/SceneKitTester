@@ -310,7 +310,13 @@ class Car: SKShapeNode {  // Car implements SKShapeNode class
     }
     
     func turnAreaFree() -> Bool {
-        return true
+        switch getDirection() {
+            case 0: return (currentStreet.isStreetFree(startingPos: xPos + 0.5, endingPos: xPos - 2.0) == nil)
+            case 1: return (currentStreet.isStreetFree(startingPos: xPos - 0.5, endingPos: xPos + 2.0) == nil)
+            case 2: return (currentStreet.isStreetFree(startingPos: yPos + 0.5, endingPos: yPos - 2.0) == nil)
+            case 3: return (currentStreet.isStreetFree(startingPos: yPos - 0.5, endingPos: yPos + 2.0) == nil)
+            default: return true
+        }
     }
     
     func getCurrentIntersection() -> Intersection? {
@@ -453,6 +459,16 @@ class Car: SKShapeNode {  // Car implements SKShapeNode class
         } else if (direction == 3) {
             currentStreet = intersection.getHorizontalTwoWay().getLeftStreet()
         }
+        
+        if (!turnAreaFree()) {
+            currentStreet = previousStreet
+            return
+        }
+        
+        if !turnAreaFree() {
+            print("is this runnning?")
+        }
+        
         currentStreet.addCar(car: self)
         fixPosOnStreet()
         rotateNodeLeft()
