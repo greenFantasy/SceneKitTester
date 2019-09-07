@@ -80,6 +80,7 @@
 		04BCB7542305C9D900275648 /* UpStreetLeftTurn.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpStreetLeftTurn.swift; sourceTree = "<group>"; };
 		04E54B26231C7210005909AA /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		2240ADB83645A6E9DF6B859E /* Pods_SceneKitTest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SceneKitTest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		373B8AE823236AB400ED1F65 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = User.swift; path = ../../../../SceneKitTester/SceneKitTest/SceneKitTest/User.swift; sourceTree = "<group>"; };
 		504AFCEDD6F2948B7D32B6D5 /* Pods-SceneKitTest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SceneKitTest.debug.xcconfig"; path = "Target Support Files/Pods-SceneKitTest/Pods-SceneKitTest.debug.xcconfig"; sourceTree = "<group>"; };
 		817B0045FF815A0E0F70467F /* Pods-SceneKitTest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SceneKitTest.release.xcconfig"; path = "Target Support Files/Pods-SceneKitTest/Pods-SceneKitTest.release.xcconfig"; sourceTree = "<group>"; };
 		CAAFA40E231252AF00A8FAED /* TurnProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TurnProtocol.swift; sourceTree = "<group>"; };
@@ -170,6 +171,7 @@
 				CAF2493422ED116E00A2E6A1 /* UpStreet.swift */,
 				04A6A38922C5E52700D511F6 /* Main.storyboard */,
 				04A6A38C22C5E52900D511F6 /* Assets.xcassets */,
+				373B8AE823236AB400ED1F65 /* User.swift */,
 				04A6A38E22C5E52900D511F6 /* LaunchScreen.storyboard */,
 				04A6A39122C5E52900D511F6 /* Info.plist */,
 			);
@@ -395,6 +397,7 @@
 				CAF2494622ED116F00A2E6A1 /* StreetProtocol.swift in Sources */,
 				CAF2494322ED116F00A2E6A1 /* TwoWayVertical.swift in Sources */,
 				CAF2493E22ED116F00A2E6A1 /* UpStreet.swift in Sources */,
+				373B8AE923236AB400ED1F65 /* User.swift in Sources */,
 				CAF2494222ED116F00A2E6A1 /* TrafficLight.swift in Sources */,
 				CAAFA411231252AF00A8FAED /* TurnProtocol.swift in Sources */,
 				CAF2494122ED116F00A2E6A1 /* RightStreet.swift in Sources */,

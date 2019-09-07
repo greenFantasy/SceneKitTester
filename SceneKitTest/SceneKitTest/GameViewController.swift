@@ -18,7 +18,7 @@ enum BodyType: Int {
 
 class GameViewController: UIViewController, SCNPhysicsContactDelegate {
     
-    private var scoreLabel = UILabel(frame: CGRect(x: 100, y: 100, width: 500, height: 20))
+    private var scoreLabel = UILabel()
     
     private var pauseButton = UIButton(frame: CGRect(x: 668/2 - 50, y: 20, width: 100, height: 20))
     
@@ -52,7 +52,7 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let realm = try! Realm()
+        
         
         if realm.objects(User.self).count == 0 {
             try! realm.write {
@@ -133,7 +133,9 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate {
         scnView.scene = scene
         
         // ADDING LABELS
-        scoreLabel.text = "Traffic Sense"
+        
+        
+        
         
         scnView.addSubview(scoreLabel)
         
@@ -169,7 +171,12 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate {
 
         // configure the view
         scnView.backgroundColor = UIColor.black
-
+        
+        scoreLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 300, height: 300))
+        scoreLabel.center = CGPoint(x: scnView.frame.midX, y: scnView.frame.midY)
+        scoreLabel.textAlignment = NSTextAlignment.center
+        scnView.addSubview(scoreLabel)
+        
         // add a tap gesture recognizer
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
         scnView.addGestureRecognizer(tapGesture)
@@ -247,6 +254,7 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate {
             gameOverScreen()
         }
     }
+    
     
     func addBoxToScene() -> SCNNode {
         let geometry = SCNBox(width: 1.0, height: 1.0, length: 1.0, chamferRadius: 0)
